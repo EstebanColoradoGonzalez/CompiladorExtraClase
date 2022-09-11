@@ -19,3 +19,14 @@ D:\Users\Esteban\Repositories\.NET\Compilador\Compilador\bin\Debug\Compilador.ex
 D:\Users\Esteban\Repositories\.NET\Compilador\Compilador\bin\Debug\Compilador.exe
 D:\Users\Esteban\Repositories\.NET\Compilador\Compilador\bin\Debug\Compilador.pdb
 D:\Users\Esteban\Repositories\.NET\Compilador\Compilador\obj\Debug\Compilador.Compilador.resources
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\bin\Debug\Compilador.exe.config
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\bin\Debug\Compilador.exe
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\bin\Debug\Compilador.pdb
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\obj\Debug\Compilador.csproj.AssemblyReference.cache
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\obj\Debug\Compilador.csproj.SuggestedBindingRedirects.cache
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\obj\Debug\Compilador.Compilador.resources
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\obj\Debug\Compilador.Properties.Resources.resources
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\obj\Debug\Compilador.csproj.GenerateResource.cache
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\obj\Debug\Compilador.csproj.CoreCompileInputs.cache
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\obj\Debug\Compilador.exe
+D:\Users\Esteban\Repositories\.NET\CompiladorClase\Compilador\obj\Debug\Compilador.pdb

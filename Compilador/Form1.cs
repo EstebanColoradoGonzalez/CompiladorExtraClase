@@ -1,5 +1,6 @@
 ﻿using Compilador.Cache;
 using Compilador.Transversal;
+using Compilador.Transversal.Componente;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -74,11 +75,23 @@ namespace Compilador
 
             textBoxResultado.Text = String.Empty;
             procesarTexto();
+
             foreach (Linea linea in cache.obtenerLineas())
             {
                 textBoxResultado.AddLine(linea.obtenerNumeroLinea() + " >> " + linea.obtenerContenido());
             }
 
+            AnalizadorLexico.AnalizadorLexico analizadorLexico = AnalizadorLexico.AnalizadorLexico.crear();
+
+            ComponenteLexico componente = null;
+
+            do
+            {
+                componente = analizadorLexico.devolverComponente();
+
+                MessageBox.Show(componente.ToString());
+            }
+            while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));
         }
 
         private void procesarTexto()
