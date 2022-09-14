@@ -35,7 +35,7 @@ namespace Compilador.AnalizadorLexico
 
         private void devolverPuntero()
         {
-            if(puntero > 1)
+            if (puntero > 1)
             {
                 puntero = puntero - 1;
             }
@@ -52,11 +52,10 @@ namespace Compilador.AnalizadorLexico
             {
                 caracterActual = lineaActual.obtenerContenido();
             }
-            else if(puntero > lineaActual.obtenerLongitudContenido())
+            else if (puntero > lineaActual.obtenerLongitudContenido())
             {
                 caracterActual = CategoriaGramatical.FIN_LINEA;
                 puntero = lineaActual.obtenerLongitudContenido() + 1;
-                cargarNuevaLinea();
             }
             else
             {
@@ -80,11 +79,11 @@ namespace Compilador.AnalizadorLexico
 
             while (continuarAnalisis)
             {
-                if(estadoActual == 0)
+                if (estadoActual == 0)
                 {
                     procesarEstadoCero();
                 }
-                else if(estadoActual == 1)
+                else if (estadoActual == 1)
                 {
                     procesarEstadoUno();
                 }
@@ -110,11 +109,11 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 7)
                 {
-                    procesarEstadoSiete();
+                    retorno = procesarEstadoSiete();
                 }
                 else if (estadoActual == 8)
                 {
-                    retorno = procesarEstadoOcho();
+                    procesarEstadoOcho();
                 }
                 else if (estadoActual == 9)
                 {
@@ -126,7 +125,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 11)
                 {
-                    procesarEstadoOnce();
+                    retorno = procesarEstadoOnce();
                 }
                 else if (estadoActual == 12)
                 {
@@ -134,7 +133,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 13)
                 {
-                    retorno = procesarEstadoTrece();
+                    procesarEstadoTrece();
                 }
                 else if (estadoActual == 14)
                 {
@@ -154,15 +153,15 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 18)
                 {
-                    procesarEstadoDieciocho();
+                    retorno = procesarEstadoDieciocho();
                 }
                 else if (estadoActual == 19)
                 {
-                    procesarEstadoDiecinueve();
+                    retorno = procesarEstadoDiecinueve();
                 }
                 else if (estadoActual == 20)
                 {
-                    retorno = procesarEstadoVeinte();
+                    procesarEstadoVeinte();
                 }
                 else if (estadoActual == 21)
                 {
@@ -182,11 +181,11 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 25)
                 {
-                    procesarEstadoVeintiCinco();
+                    retorno = procesarEstadoVeintiCinco();
                 }
                 else if (estadoActual == 26)
                 {
-                    procesarEstadoVeintiSeis();
+                    retorno = procesarEstadoVeintiSeis();
                 }
                 else if (estadoActual == 27)
                 {
@@ -202,11 +201,11 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 30)
                 {
-                    procesarEstadoTreinta();
+                    retorno = procesarEstadoTreinta();
                 }
                 else if (estadoActual == 31)
                 {
-                    retorno = procesarEstadoTreintaYUno();
+                    procesarEstadoTreintaYUno();
                 }
                 else if (estadoActual == 32)
                 {
@@ -214,7 +213,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 33)
                 {
-                    procesarEstadoTreintaYTres();
+                    retorno = procesarEstadoTreintaYTres();
                 }
                 else if (estadoActual == 34)
                 {
@@ -222,7 +221,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 35)
                 {
-                    retorno = procesarEstadoTreintaYCinco();
+                    procesarEstadoTreintaYCinco();
                 }
                 else if (estadoActual == 36)
                 {
@@ -230,35 +229,35 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 37)
                 {
-                    procesarEstadoTreintaYSiete();
+                    retorno = procesarEstadoTreintaYSiete();
                 }
                 else if (estadoActual == 38)
                 {
-                    retorno = procesarEstadoTreintaYOcho();
+                    procesarEstadoTreintaYOcho();
                 }
                 else if (estadoActual == 39)
                 {
-                    retorno = procesarEstadoTreintaYNueve();
+                    procesarEstadoTreintaYNueve();
                 }
                 else if (estadoActual == 40)
                 {
-                    procesarEstadoCuarenta();
+                    retorno = procesarEstadoCuarenta();
                 }
                 else if (estadoActual == 41)
                 {
-                    procesarEstadoCuarentaYUno();
+                    retorno = procesarEstadoCuarentaYUno();
                 }
                 else if (estadoActual == 42)
                 {
-                    retorno = procesarEstadoCuarentaYDos();
+                    procesarEstadoCuarentaYDos();
                 }
                 else if (estadoActual == 43)
                 {
-                    retorno = procesarEstadoCuarentaYTres();
+                    procesarEstadoCuarentaYTres();
                 }
                 else if (estadoActual == 44)
                 {
-                    procesarEstadoCuarentaYCuatro();
+                    retorno = procesarEstadoCuarentaYCuatro();
                 }
                 else if (estadoActual == 45)
                 {
@@ -266,7 +265,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 46)
                 {
-                    retorno = procesarEstadoCuarentaYSeis();
+                    procesarEstadoCuarentaYSeis();
                 }
                 else if (estadoActual == 47)
                 {
@@ -278,7 +277,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 49)
                 {
-                    procesarEstadoCuarentaYNueve();
+                    retorno = procesarEstadoCuarentaYNueve();
                 }
                 else if (estadoActual == 50)
                 {
@@ -290,7 +289,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 52)
                 {
-                    retorno = procesarEstadoCincuentaYDos();
+                    procesarEstadoCincuentaYDos();
                 }
                 else if (estadoActual == 53)
                 {
@@ -302,35 +301,35 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 55)
                 {
-                    procesarEstadoCincuentaYCinco();
+                    retorno = procesarEstadoCincuentaYCinco();
                 }
                 else if (estadoActual == 56)
                 {
-                    retorno = procesarEstadoCincuentaYSeis();
+                    procesarEstadoCincuentaYSeis();
                 }
                 else if (estadoActual == 57)
                 {
-                    procesarEstadoCincuentaYSiete();
+                    retorno = procesarEstadoCincuentaYSiete();
                 }
                 else if (estadoActual == 58)
                 {
-                    retorno = procesarEstadoCincuentaYOcho();
+                    procesarEstadoCincuentaYOcho();
                 }
                 else if (estadoActual == 59)
                 {
-                    procesarEstadoCincuentaYNueve();
+                    retorno = procesarEstadoCincuentaYNueve();
                 }
                 else if (estadoActual == 60)
                 {
-                    retorno = procesarEstadoSesenta();
+                    procesarEstadoSesenta();
                 }
                 else if (estadoActual == 61)
                 {
-                    procesarEstadoSesentaYUno();
+                    retorno = procesarEstadoSesentaYUno();
                 }
                 else if (estadoActual == 62)
                 {
-                    retorno = procesarEstadoSesentaYDos();
+                    procesarEstadoSesentaYDos();
                 }
                 else if (estadoActual == 63)
                 {
@@ -346,7 +345,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 66)
                 {
-                    procesarEstadoSesentaYSeis();
+                    retorno = procesarEstadoSesentaYSeis();
                 }
                 else if (estadoActual == 67)
                 {
@@ -354,7 +353,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 68)
                 {
-                    retorno = procesarEstadoSesentaYOcho();
+                    procesarEstadoSesentaYOcho();
                 }
                 else if (estadoActual == 69)
                 {
@@ -370,11 +369,11 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 72)
                 {
-                    procesarEstadoSetentaYDos();
+                    retorno = procesarEstadoSetentaYDos();
                 }
                 else if (estadoActual == 73)
                 {
-                    retorno = procesarEstadoSetentaYTres();
+                    procesarEstadoSetentaYTres();
                 }
                 else if (estadoActual == 74)
                 {
@@ -390,7 +389,7 @@ namespace Compilador.AnalizadorLexico
                 }
                 else if (estadoActual == 77)
                 {
-                    procesarEstadoSetentaYSiete();
+                    retorno = procesarEstadoSetentaYSiete();
                 }
                 else if (estadoActual == 78)
                 {
@@ -399,26 +398,6 @@ namespace Compilador.AnalizadorLexico
                 else if (estadoActual == 79)
                 {
                     retorno = procesarEstadoSetentaYNueve();
-                }
-                else if (estadoActual == 80)
-                {
-                    procesarEstadoOchenta();
-                }
-                else if (estadoActual == 81)
-                {
-                    retorno = procesarEstadoOchentaYUno();
-                }
-                else if (estadoActual == 82)
-                {
-                    procesarEstadoOchentaYDos();
-                }
-                else if (estadoActual == 83)
-                {
-                    procesarEstadoOchentaYTres();
-                }
-                else if (estadoActual == 84)
-                {
-                    retorno = procesarEstadoOchentaYCuatro();
                 }
             }
 
@@ -601,92 +580,92 @@ namespace Compilador.AnalizadorLexico
             leerSiguienteCaracter();
             devorarEspaciosEnBlancos();
 
-            if(esLetraS())
+            if (esLetraS())
             {
                 estadoActual = 1;
                 concatenar();
             }
-            else if(esLetraC())
+            else if (esLetraC())
             {
-                estadoActual = 15;
+                estadoActual = 13;
                 concatenar();
             }
-            else if(esLetraT())
+            else if (esLetraT())
             {
-                estadoActual = 22;
+                estadoActual = 20;
                 concatenar();
             }
-            else if(esDigito())
+            else if (esDigito())
             {
-                estadoActual = 55;
+                estadoActual = 54;
                 concatenar();
             }
-            else if(esComillaSimple())
+            else if (esComillaSimple())
             {
-                estadoActual = 61;
+                estadoActual = 60;
                 concatenar();
             }
-            else if(esLetraW())
+            else if (esLetraW())
             {
-                estadoActual = 63;
+                estadoActual = 62;
                 concatenar();
             }
-            else if(esLetraO())
+            else if (esLetraO())
             {
-                estadoActual = 70;
+                estadoActual = 68;
                 concatenar();
             }
             else if (esComa())
             {
-                estadoActual = 81;
+                estadoActual = 79;
                 concatenar();
             }
             else if (esLetraF())
             {
-                estadoActual = 9;
+                estadoActual = 8;
                 concatenar();
             }
             else if (esIgual())
             {
-                estadoActual = 29;
+                estadoActual = 27;
                 concatenar();
             }
             else if (esMayor())
             {
-                estadoActual = 30;
+                estadoActual = 28;
                 concatenar();
             }
             else if (esMenor())
             {
-                estadoActual = 33;
+                estadoActual = 31;
                 concatenar();
             }
             else if (esSignoAdmiracionCierra())
             {
-                estadoActual = 37;
+                estadoActual = 35;
                 concatenar();
             }
             else if (esLetraA())
             {
-                estadoActual = 40;
+                estadoActual = 38;
                 concatenar();
             }
             else if (esLetraD())
             {
-                estadoActual = 47;
+                estadoActual = 46;
                 concatenar();
             }
-            else if(esFinArchivo())
+            else if (esFinArchivo())
             {
-                estadoActual = 52;
+                estadoActual = 51;
             }
             else if (esFinLinea())
             {
-                estadoActual = 54;
+                estadoActual = 53;
             }
             else
             {
-                estadoActual = 53;
+                estadoActual = 52;
             }
         }
 
@@ -701,6 +680,7 @@ namespace Compilador.AnalizadorLexico
             }
             else
             {
+                concatenar("ELECT");
                 estadoActual = 7;
             }
         }
@@ -716,6 +696,7 @@ namespace Compilador.AnalizadorLexico
             }
             else
             {
+                concatenar("LECT");
                 estadoActual = 7;
             }
         }
@@ -731,6 +712,7 @@ namespace Compilador.AnalizadorLexico
             }
             else
             {
+                concatenar("ECT");
                 estadoActual = 7;
             }
         }
@@ -746,6 +728,7 @@ namespace Compilador.AnalizadorLexico
             }
             else
             {
+                concatenar("CT");
                 estadoActual = 7;
             }
         }
@@ -762,7 +745,7 @@ namespace Compilador.AnalizadorLexico
             else
             {
                 concatenar("T");
-                estadoActual = 8;
+                estadoActual = 7;
             }
         }
 
@@ -776,34 +759,40 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.SELECT, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoSiete()
-        {
-            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el SELECT, el cual es " + caracterActual);
-        }
-
-        private ComponenteLexico procesarEstadoOcho()
+        private ComponenteLexico procesarEstadoSiete()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
+            return ComponenteLexico.crearDummy(lexema, Categoria.SELECT, numeroLinea, 1, 1);
+        }
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.SELECT, numeroLinea, posicionInicial, posicionFinal);
+        private void procesarEstadoOcho()
+        {
+            leerSiguienteCaracter();
+
+            if (esLetraR())
+            {
+                estadoActual = 9;
+                concatenar();
+            }
+            else
+            {
+                estadoActual = 12;
+            }
         }
 
         private void procesarEstadoNueve()
         {
             leerSiguienteCaracter();
 
-            if (esLetraR())
+            if (esLetraO())
             {
                 estadoActual = 10;
                 concatenar();
             }
             else
             {
-                estadoActual = 14;
+                estadoActual = 12;
             }
         }
 
@@ -811,34 +800,19 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraO())
+            if (esLetraM())
             {
                 estadoActual = 11;
                 concatenar();
             }
             else
             {
-                estadoActual = 14;
-            }
-        }
-
-        private void procesarEstadoOnce()
-        {
-            leerSiguienteCaracter();
-
-            if (esLetraM())
-            {
-                estadoActual = 12;
-                concatenar();
-            }
-            else
-            {
                 concatenar("M");
-                estadoActual = 14;
+                estadoActual = 12;
             }
         }
 
-        private ComponenteLexico procesarEstadoDoce()
+        private ComponenteLexico procesarEstadoOnce()
         {
             continuarAnalisis = false;
 
@@ -848,34 +822,57 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.FROM, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoTrece()
+        private ComponenteLexico procesarEstadoDoce()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
-
-            return ComponenteLexico.crearDummy(lexema, Categoria.FROM, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearDummy(lexema, Categoria.FROM, numeroLinea, 1, 1);
         }
 
-        private void procesarEstadoCatorce()
-        {
-            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el FROM, el cual es " + caracterActual);
-        }
-
-        private void procesarEstadoQuince()
+        private void procesarEstadoTrece()
         {
             leerSiguienteCaracter();
 
             if (esLetraA())
+            {
+                estadoActual = 14;
+                concatenar();
+            }
+            else
+            {
+                concatenar("AM_NOMBRE");
+                estadoActual = 19;
+            }
+        }
+
+        private void procesarEstadoCatorce()
+        {
+            leerSiguienteCaracter();
+
+            if (esLetraM())
+            {
+                estadoActual = 15;
+                concatenar();
+            }
+            else
+            {
+                concatenar("M_NOMBRE");
+                estadoActual = 19;
+            }
+        }
+        private void procesarEstadoQuince()
+        {
+            leerSiguienteCaracter();
+
+            if (esGuionBajo())
             {
                 estadoActual = 16;
                 concatenar();
             }
             else
             {
-                estadoActual = 21;
+                concatenar("_NOMBRE");
+                estadoActual = 19;
             }
         }
 
@@ -883,67 +880,39 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraM())
+            if (esGuionBajo())
+            {
+                estadoActual = 16;
+                concatenar();
+            }
+            else if (esLetra() || esDigito())
             {
                 estadoActual = 17;
                 concatenar();
             }
             else
             {
-                estadoActual = 21;
-            }
-        }
-        private void procesarEstadoDiecisiete()
-        {
-            leerSiguienteCaracter();
-
-            if (esGuionBajo())
-            {
-                estadoActual = 18;
-                concatenar();
-            }
-            else
-            {
-                estadoActual = 21;
-            }
-        }
-
-        private void procesarEstadoDieciocho()
-        {
-            leerSiguienteCaracter();
-
-            if (esGuionBajo())
-            {
-                estadoActual = 18;
-                concatenar();
-            }
-            else if (esLetra() || esDigito())
-            {
+                concatenar("NOMBRE");
                 estadoActual = 19;
-                concatenar();
-            }
-            else
-            {
-                estadoActual = 21;
             }
         }
 
-        private void procesarEstadoDiecinueve()
+        private void procesarEstadoDiecisiete()
         {
             leerSiguienteCaracter();
 
             if (esLetra() || esDigito() || esGuionBajo())
             {
-                estadoActual = 19;
+                estadoActual = 17;
                 concatenar();
             }
             else
             {
-                estadoActual = 20;
+                estadoActual = 18;
             }
         }
 
-        private ComponenteLexico procesarEstadoVeinte()
+        private ComponenteLexico procesarEstadoDieciocho()
         {
             continuarAnalisis = false;
             devolverPuntero();
@@ -954,23 +923,58 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.CAMPO, numeroLinea, posicionInicial, posicionFinal);
         }
 
+        private ComponenteLexico procesarEstadoDiecinueve()
+        {
+            continuarAnalisis = false;
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.CAMPO, numeroLinea, 1, 1);
+        }
+
+        private void procesarEstadoVeinte()
+        {
+            leerSiguienteCaracter();
+
+            if (esLetraA())
+            {
+                estadoActual = 21;
+                concatenar();
+            }
+            else
+            {
+                concatenar("AB_NOMBRE");
+                estadoActual = 26;
+            }
+        }
+
         private void procesarEstadoVeintiUno()
         {
-            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el CAMPO, el cual es " + caracterActual);
+            leerSiguienteCaracter();
+
+            if (esLetraB())
+            {
+                estadoActual = 22;
+                concatenar();
+            }
+            else
+            {
+                concatenar("B_NOMBRE");
+                estadoActual = 26;
+            }
         }
 
         private void procesarEstadoVeintiDos()
         {
             leerSiguienteCaracter();
 
-            if (esLetraA())
+            if (esGuionBajo())
             {
                 estadoActual = 23;
                 concatenar();
             }
             else
             {
-                estadoActual = 28;
+                concatenar("_NOMBRE");
+                estadoActual = 26;
             }
         }
 
@@ -978,14 +982,20 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraB())
+            if (esGuionBajo())
+            {
+                estadoActual = 23;
+                concatenar();
+            }
+            else if (esLetra() || esDigito())
             {
                 estadoActual = 24;
                 concatenar();
             }
             else
             {
-                estadoActual = 28;
+                concatenar("NOMBRE");
+                estadoActual = 26;
             }
         }
 
@@ -993,53 +1003,18 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esGuionBajo())
-            {
-                estadoActual = 25;
-                concatenar();
-            }
-            else
-            {
-                estadoActual = 28;
-            }
-        }
-
-        private void procesarEstadoVeintiCinco()
-        {
-            leerSiguienteCaracter();
-
-            if (esGuionBajo())
-            {
-                estadoActual = 25;
-                concatenar();
-            }
-            else if(esLetra() || esDigito())
-            {
-                estadoActual = 26;
-                concatenar();
-            }
-            else
-            {
-                estadoActual = 28;
-            }
-        }
-
-        private void procesarEstadoVeintiSeis()
-        {
-            leerSiguienteCaracter();
-
             if (esGuionBajo() || esLetra() || esDigito())
             {
-                estadoActual = 26;
+                estadoActual = 25;
                 concatenar();
             }
             else
             {
-                estadoActual = 27;
+                estadoActual = 26;
             }
         }
 
-        private ComponenteLexico procesarEstadoVeintiSiete()
+        private ComponenteLexico procesarEstadoVeintiCinco()
         {
             continuarAnalisis = false;
             devolverPuntero();
@@ -1050,12 +1025,14 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.TABLA, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoVeintiOcho()
+        private ComponenteLexico procesarEstadoVeintiSeis()
         {
-            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para la TABLA, el cual es " + caracterActual);
+            continuarAnalisis = false;
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.TABLA, numeroLinea, 1, 1);
         }
 
-        private ComponenteLexico procesarEstadoVeintiNueve()
+        private ComponenteLexico procesarEstadoVeintiSiete()
         {
             continuarAnalisis = false;
 
@@ -1065,22 +1042,22 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.IGUAL, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoTreinta()
+        private void procesarEstadoVeintiOcho()
         {
             leerSiguienteCaracter();
 
             if (esIgual())
             {
-                estadoActual = 31;
+                estadoActual = 29;
                 concatenar();
             }
             else
             {
-                estadoActual = 32;
+                estadoActual = 30;
             }
         }
 
-        private ComponenteLexico procesarEstadoTreintaYUno()
+        private ComponenteLexico procesarEstadoVeintiNueve()
         {
             continuarAnalisis = false;
 
@@ -1090,7 +1067,7 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.MAYOR_O_IGUAL_QUE, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoTreintaYDos()
+        private ComponenteLexico procesarEstadoTreinta()
         {
             continuarAnalisis = false;
 
@@ -1100,27 +1077,27 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.MAYOR_QUE, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoTreintaYTres()
+        private void procesarEstadoTreintaYUno()
         {
             leerSiguienteCaracter();
 
             if (esMayor())
             {
-                estadoActual = 34;
+                estadoActual = 32;
                 concatenar();
             }
-            else if(esIgual())
+            else if (esIgual())
             {
-                estadoActual = 35;
+                estadoActual = 33;
                 concatenar();
             }
             else
             {
-                estadoActual = 36;
+                estadoActual = 34;
             }
         }
 
-        private ComponenteLexico procesarEstadoTreintaYCuatro()
+        private ComponenteLexico procesarEstadoTreintaYDos()
         {
             continuarAnalisis = false;
 
@@ -1130,7 +1107,7 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.DIFERENTE_QUE, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoTreintaYCinco()
+        private ComponenteLexico procesarEstadoTreintaYTres()
         {
             continuarAnalisis = false;
 
@@ -1140,7 +1117,7 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.MENOR_O_IGUAL_QUE, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoTreintaYSeis()
+        private ComponenteLexico procesarEstadoTreintaYCuatro()
         {
             continuarAnalisis = false;
 
@@ -1150,23 +1127,23 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.MENOR_QUE, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoTreintaYSiete()
+        private void procesarEstadoTreintaYCinco()
         {
             leerSiguienteCaracter();
 
             if (esIgual())
             {
-                estadoActual = 38;
+                estadoActual = 36;
                 concatenar();
             }
             else
             {
                 concatenar("=");
-                estadoActual = 39;
+                estadoActual = 37;
             }
         }
 
-        private ComponenteLexico procesarEstadoTreintaYOcho()
+        private ComponenteLexico procesarEstadoTreintaYSeis()
         {
             continuarAnalisis = false;
 
@@ -1176,54 +1153,50 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.DIFERENTE_QUE, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoTreintaYNueve()
+        private ComponenteLexico procesarEstadoTreintaYSiete()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
-
-            return ComponenteLexico.crearDummy(lexema, Categoria.DIFERENTE_QUE, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearDummy(lexema, Categoria.DIFERENTE_QUE, numeroLinea, 1, 1);
         }
 
-        private void procesarEstadoCuarenta()
+        private void procesarEstadoTreintaYOcho()
         {
             leerSiguienteCaracter();
 
             if (esLetraN())
             {
-                estadoActual = 41;
+                estadoActual = 39;
                 concatenar();
             }
             else if (esLetraS())
             {
-                estadoActual = 44;
+                estadoActual = 43;
                 concatenar();
             }
             else
             {
-                estadoActual = 82;
+                estadoActual = 42;
             }
         }
 
-        private void procesarEstadoCuarentaYUno()
+        private void procesarEstadoTreintaYNueve()
         {
             leerSiguienteCaracter();
 
             if (esLetraD())
             {
-                estadoActual = 42;
+                estadoActual = 40;
                 concatenar();
             }
             else
             {
                 concatenar("D");
-                estadoActual = 43;
+                estadoActual = 41;
             }
         }
 
-        private ComponenteLexico procesarEstadoCuarentaYDos()
+        private ComponenteLexico procesarEstadoCuarenta()
         {
             continuarAnalisis = false;
 
@@ -1233,34 +1206,35 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.AND, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoCuarentaYTres()
+        private ComponenteLexico procesarEstadoCuarentaYUno()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
-
-            return ComponenteLexico.crearDummy(lexema, Categoria.AND, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearDummy(lexema, Categoria.AND, numeroLinea, 1, 1);
         }
 
-        private void procesarEstadoCuarentaYCuatro()
+        private void procesarEstadoCuarentaYDos()
+        {
+            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el AND o ASC, el cual es " + caracterActual);
+        }
+
+        private void procesarEstadoCuarentaYTres()
         {
             leerSiguienteCaracter();
 
             if (esLetraC())
             {
-                estadoActual = 45;
+                estadoActual = 44;
                 concatenar();
             }
             else
             {
                 concatenar("C");
-                estadoActual = 46;
+                estadoActual = 45;
             }
         }
 
-        private ComponenteLexico procesarEstadoCuarentaYCinco()
+        private ComponenteLexico procesarEstadoCuarentaYCuatro()
         {
             continuarAnalisis = false;
 
@@ -1270,29 +1244,42 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.ASC, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoCuarentaYSeis()
+        private ComponenteLexico procesarEstadoCuarentaYCinco()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
+            return ComponenteLexico.crearDummy(lexema, Categoria.ASC, numeroLinea, 1, 1);
+        }
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.ASC, numeroLinea, posicionInicial, posicionFinal);
+        private void procesarEstadoCuarentaYSeis()
+        {
+            leerSiguienteCaracter();
+
+            if (esLetraE())
+            {
+                estadoActual = 47;
+                concatenar();
+            }
+            else
+            {
+                concatenar("E");
+                estadoActual = 50;
+            }
         }
 
         private void procesarEstadoCuarentaYSiete()
         {
             leerSiguienteCaracter();
 
-            if (esLetraE())
+            if (esLetraS())
             {
                 estadoActual = 48;
                 concatenar();
             }
             else
             {
-                estadoActual = 83;
+                concatenar("S");
+                estadoActual = 50;
             }
         }
 
@@ -1300,34 +1287,19 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraS())
+            if (esLetraC())
             {
                 estadoActual = 49;
                 concatenar();
             }
             else
             {
-                estadoActual = 83;
-            }
-        }
-
-        private void procesarEstadoCuarentaYNueve()
-        {
-            leerSiguienteCaracter();
-
-            if (esLetraC())
-            {
-                estadoActual = 50;
-                concatenar();
-            }
-            else
-            {
                 concatenar("C");
-                estadoActual = 51;
+                estadoActual = 50;
             }
         }
 
-        private ComponenteLexico procesarEstadoCincuenta()
+        private ComponenteLexico procesarEstadoCuarentaYNueve()
         {
             continuarAnalisis = false;
 
@@ -1337,18 +1309,14 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.DESC, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoCincuentaYUno()
+        private ComponenteLexico procesarEstadoCincuenta()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
-
-            return ComponenteLexico.crearDummy(lexema, Categoria.DESC, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearDummy(lexema, Categoria.DESC, numeroLinea, 1, 1);
         }
 
-        private ComponenteLexico procesarEstadoCincuentaYDos()
+        private ComponenteLexico procesarEstadoCincuentaYUno()
         {
             continuarAnalisis = false;
 
@@ -1358,38 +1326,38 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(CategoriaGramatical.FIN_ARCHIVO, Categoria.FIN_ARCHIVO, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoCincuentaYTres()
+        private void procesarEstadoCincuentaYDos()
         {
             throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo desconocido, el cual es " + caracterActual);
         }
 
-        private void procesarEstadoCincuentaYCuatro()
+        private void procesarEstadoCincuentaYTres()
         {
             cargarNuevaLinea();
             estadoActual = 0;
         }
 
-        private void procesarEstadoCincuentaYCinco()
+        private void procesarEstadoCincuentaYCuatro()
         {
             leerSiguienteCaracter();
 
             if (esDigito())
             {
-                estadoActual = 55;
+                estadoActual = 54;
                 concatenar();
             }
             else if (esPunto())
             {
-                estadoActual = 57;
+                estadoActual = 56;
                 concatenar();
             }
             else
             {
-                estadoActual = 56;
+                estadoActual = 55;
             }
         }
 
-        private ComponenteLexico procesarEstadoCincuentaYSeis()
+        private ComponenteLexico procesarEstadoCincuentaYCinco()
         {
             continuarAnalisis = false;
             devolverPuntero();
@@ -1400,49 +1368,45 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.ENTERO, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoCincuentaYSiete()
+        private void procesarEstadoCincuentaYSeis()
         {
             leerSiguienteCaracter();
 
             if (esDigito())
             {
-                estadoActual = 59;
+                estadoActual = 58;
                 concatenar();
             }
             else
             {
                 concatenar("0");
-                estadoActual = 58;
+                estadoActual = 57;
             }
         }
 
-        private ComponenteLexico procesarEstadoCincuentaYOcho()
+        private ComponenteLexico procesarEstadoCincuentaYSiete()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
-
-            return ComponenteLexico.crearDummy(lexema, Categoria.DECIMAL, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearDummy(lexema, Categoria.DECIMAL, numeroLinea, 1, 1);
         }
 
-        private void procesarEstadoCincuentaYNueve()
+        private void procesarEstadoCincuentaYOcho()
         {
             leerSiguienteCaracter();
 
             if (esDigito())
             {
-                estadoActual = 59;
+                estadoActual = 58;
                 concatenar();
             }
             else
             {
-                estadoActual = 60;
+                estadoActual = 59;
             }
         }
 
-        private ComponenteLexico procesarEstadoSesenta()
+        private ComponenteLexico procesarEstadoCincuentaYNueve()
         {
             continuarAnalisis = false;
             devolverPuntero();
@@ -1453,23 +1417,23 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.DECIMAL, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoSesentaYUno()
+        private void procesarEstadoSesenta()
         {
             leerSiguienteCaracter();
 
             if (esComillaSimple())
             {
-                estadoActual = 62;
+                estadoActual = 61;
                 concatenar();
             }
             else
             {
-                estadoActual = 61;
+                estadoActual = 60;
                 concatenar();
             }
         }
 
-        private ComponenteLexico procesarEstadoSesentaYDos()
+        private ComponenteLexico procesarEstadoSesentaYUno()
         {
             continuarAnalisis = false;
 
@@ -1479,18 +1443,35 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.LITERAL, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoSesentaYTres()
+        private void procesarEstadoSesentaYDos()
         {
             leerSiguienteCaracter();
 
             if (esLetraH())
+            {
+                estadoActual = 63;
+                concatenar();
+            }
+            else
+            {
+                concatenar("HERE");
+                estadoActual = 67;
+            }
+        }
+
+        private void procesarEstadoSesentaYTres()
+        {
+            leerSiguienteCaracter();
+
+            if (esLetraE())
             {
                 estadoActual = 64;
                 concatenar();
             }
             else
             {
-                estadoActual = 69;
+                concatenar("ERE");
+                estadoActual = 67;
             }
         }
 
@@ -1498,14 +1479,15 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraE())
+            if (esLetraR())
             {
                 estadoActual = 65;
                 concatenar();
             }
             else
             {
-                estadoActual = 69;
+                concatenar("RE");
+                estadoActual = 67;
             }
         }
 
@@ -1513,34 +1495,19 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraR())
+            if (esLetraE())
             {
                 estadoActual = 66;
                 concatenar();
             }
             else
             {
-                estadoActual = 69;
-            }
-        }
-
-        private void procesarEstadoSesentaYSeis()
-        {
-            leerSiguienteCaracter();
-
-            if (esLetraE())
-            {
-                estadoActual = 67;
-                concatenar();
-            }
-            else
-            {
                 concatenar("E");
-                estadoActual = 68;
+                estadoActual = 67;
             }
         }
 
-        private ComponenteLexico procesarEstadoSesentaYSiete()
+        private ComponenteLexico procesarEstadoSesentaYSeis()
         {
             continuarAnalisis = false;
 
@@ -1550,35 +1517,45 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.WHERE, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoSesentaYOcho()
+        private ComponenteLexico procesarEstadoSesentaYSiete()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
+            return ComponenteLexico.crearDummy(lexema, Categoria.WHERE, numeroLinea, 1, 1);
+        }
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.WHERE, numeroLinea, posicionInicial, posicionFinal);
+        private void procesarEstadoSesentaYOcho()
+        {
+            leerSiguienteCaracter();
+
+            if (esLetraR())
+            {
+                estadoActual = 70;
+                concatenar();
+            }
+            else
+            {
+                estadoActual = 69;
+            }
         }
 
         private void procesarEstadoSesentaYNueve()
         {
-            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el WHERE, el cual es " + caracterActual);
+            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el ORDER BY o OR, el cual es " + caracterActual);
         }
 
         private void procesarEstadoSetenta()
         {
             leerSiguienteCaracter();
 
-            if (esLetraR())
+            if (esLetraD())
             {
                 estadoActual = 71;
                 concatenar();
             }
             else
             {
-                concatenar("R");
-                estadoActual = 84;
+                estadoActual = 72;
             }
         }
 
@@ -1586,33 +1563,19 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraD())
-            {
-                estadoActual = 72;
-                concatenar();
-            }
-            else
-            {
-                estadoActual = 73;
-            }
-        }
-
-        private void procesarEstadoSetentaYDos()
-        {
-            leerSiguienteCaracter();
-
             if (esLetraE())
             {
-                estadoActual = 74;
+                estadoActual = 73;
                 concatenar();
             }
             else
             {
-                estadoActual = 80;
+                concatenar("ER BY");
+                estadoActual = 78;
             }
         }
 
-        private ComponenteLexico procesarEstadoSetentaYTres()
+        private ComponenteLexico procesarEstadoSetentaYDos()
         {
             continuarAnalisis = false;
 
@@ -1622,18 +1585,35 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.OR, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private void procesarEstadoSetentaYCuatro()
+        private void procesarEstadoSetentaYTres()
         {
             leerSiguienteCaracter();
 
             if (esLetraR())
+            {
+                estadoActual = 74;
+                concatenar();
+            }
+            else
+            {
+                concatenar("R BY");
+                estadoActual = 78;
+            }
+        }
+
+        private void procesarEstadoSetentaYCuatro()
+        {
+            leerSiguienteCaracter();
+
+            if (esEspacio())
             {
                 estadoActual = 75;
                 concatenar();
             }
             else
             {
-                estadoActual = 80;
+                concatenar(" BY");
+                estadoActual = 78;
             }
         }
 
@@ -1641,14 +1621,15 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esEspacio())
+            if (esLetraB())
             {
                 estadoActual = 76;
                 concatenar();
             }
             else
             {
-                estadoActual = 80;
+                concatenar("BY");
+                estadoActual = 78;
             }
         }
 
@@ -1656,34 +1637,19 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraB())
+            if (esLetraY())
             {
                 estadoActual = 77;
                 concatenar();
             }
             else
             {
-                estadoActual = 80;
-            }
-        }
-
-        private void procesarEstadoSetentaYSiete()
-        {
-            leerSiguienteCaracter();
-
-            if (esLetraY())
-            {
-                estadoActual = 78;
-                concatenar();
-            }
-            else
-            {
                 concatenar("Y");
-                estadoActual = 79;
+                estadoActual = 78;
             }
         }
 
-        private ComponenteLexico procesarEstadoSetentaYOcho()
+        private ComponenteLexico procesarEstadoSetentaYSiete()
         {
             continuarAnalisis = false;
 
@@ -1693,23 +1659,14 @@ namespace Compilador.AnalizadorLexico
             return ComponenteLexico.crearSimbolo(lexema, Categoria.ORDER_BY, numeroLinea, posicionInicial, posicionFinal);
         }
 
-        private ComponenteLexico procesarEstadoSetentaYNueve()
+        private ComponenteLexico procesarEstadoSetentaYOcho()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
-
-            return ComponenteLexico.crearDummy(lexema, Categoria.ORDER_BY, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearDummy(lexema, Categoria.ORDER_BY, numeroLinea, 1, 1);
         }
 
-        private void procesarEstadoOchenta()
-        {
-            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el ORDER BY, el cual es " + caracterActual);
-        }
-
-        private ComponenteLexico procesarEstadoOchentaYUno()
+        private ComponenteLexico procesarEstadoSetentaYNueve()
         {
             continuarAnalisis = false;
 
@@ -1717,27 +1674,6 @@ namespace Compilador.AnalizadorLexico
             int posicionFinal = puntero - 1;
 
             return ComponenteLexico.crearSimbolo(lexema, Categoria.COMA, numeroLinea, posicionInicial, posicionFinal);
-        }
-
-        private void procesarEstadoOchentaYDos()
-        {
-            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el AND, el cual es " + caracterActual);
-        }
-
-        private void procesarEstadoOchentaYTres()
-        {
-            throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo no valido para el DESC, el cual es " + caracterActual);
-        }
-
-        private ComponenteLexico procesarEstadoOchentaYCuatro()
-        {
-            continuarAnalisis = false;
-            devolverPuntero();
-
-            int posicionInicial = puntero - lexema.Length;
-            int posicionFinal = puntero - 1;
-
-            return ComponenteLexico.crearDummy(lexema, Categoria.OR, numeroLinea, posicionInicial, posicionFinal);
         }
     }
 }
