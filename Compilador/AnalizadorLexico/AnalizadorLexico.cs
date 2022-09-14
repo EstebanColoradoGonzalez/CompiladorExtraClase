@@ -1374,7 +1374,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoCincuentaYCinco()
         {
             continuarAnalisis = false;
-            devolverPuntero();
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
@@ -1423,7 +1427,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoCincuentaYNueve()
         {
             continuarAnalisis = false;
-            devolverPuntero();
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
