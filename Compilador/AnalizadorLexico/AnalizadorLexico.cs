@@ -921,7 +921,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoDieciocho()
         {
             continuarAnalisis = false;
-            devolverPuntero();
+            
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
@@ -1011,19 +1015,23 @@ namespace Compilador.AnalizadorLexico
 
             if (esGuionBajo() || esLetra() || esDigito())
             {
-                estadoActual = 25;
+                estadoActual = 24;
                 concatenar();
             }
             else
             {
-                estadoActual = 26;
+                estadoActual = 25;
             }
         }
 
         private ComponenteLexico procesarEstadoVeintiCinco()
         {
             continuarAnalisis = false;
-            devolverPuntero();
+
+            if(!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
@@ -1366,6 +1374,7 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoCincuentaYCinco()
         {
             continuarAnalisis = false;
+            devolverPuntero();
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
@@ -1414,6 +1423,7 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoCincuentaYNueve()
         {
             continuarAnalisis = false;
+            devolverPuntero();
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
