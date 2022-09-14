@@ -40,8 +40,8 @@ namespace Compilador
         {
             if (radioButtonConsola.Checked)
             {
-                groupBox1.Show();
                 groupBox2.Hide();
+                groupBox1.Show();
             }
         }
 
@@ -49,8 +49,8 @@ namespace Compilador
         {
             if (radioButtonArchivo.Checked)
             {
-                groupBox2.Show();
                 groupBox1.Hide();
+                groupBox2.Show();
             }
         }
 

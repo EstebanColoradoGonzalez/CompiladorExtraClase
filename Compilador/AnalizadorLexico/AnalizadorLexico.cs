@@ -412,7 +412,7 @@ namespace Compilador.AnalizadorLexico
         {
             String blanco = " ";
 
-            while (blanco.Equals(caracterActual))
+            while (blanco.Equals(caracterActual) || esTabulacion())
             {
                 leerSiguienteCaracter();
             }
@@ -567,6 +567,11 @@ namespace Compilador.AnalizadorLexico
         private bool esFinLinea()
         {
             return CategoriaGramatical.FIN_LINEA.Equals(caracterActual);
+        }
+
+        private bool esTabulacion()
+        {
+            return "\t".Equals(caracterActual);
         }
 
         private void concatenar()
@@ -1694,6 +1699,11 @@ namespace Compilador.AnalizadorLexico
                 estadoActual = 75;
                 concatenar();
             }
+            else if(esTabulacion())
+            {
+                estadoActual = 75;
+                concatenar(" ");
+            }
             else
             {
                 concatenar(" BY");
@@ -1705,7 +1715,11 @@ namespace Compilador.AnalizadorLexico
         {
             leerSiguienteCaracter();
 
-            if (esLetraB())
+            if (esEspacio() || esTabulacion())
+            {
+                estadoActual = 75;
+            }
+            else if (esLetraB())
             {
                 estadoActual = 76;
                 concatenar();
