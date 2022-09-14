@@ -767,6 +767,11 @@ namespace Compilador.AnalizadorLexico
         {
             continuarAnalisis = false;
 
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
+
             return ComponenteLexico.crearDummy(lexema, Categoria.SELECT, numeroLinea, 1, 1);
         }
 
@@ -831,6 +836,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoDoce()
         {
             continuarAnalisis = false;
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             return ComponenteLexico.crearDummy(lexema, Categoria.FROM, numeroLinea, 1, 1);
         }
@@ -936,6 +946,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoDiecinueve()
         {
             continuarAnalisis = false;
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             return ComponenteLexico.crearDummy(lexema, Categoria.CAMPO, numeroLinea, 1, 1);
         }
@@ -1043,6 +1058,11 @@ namespace Compilador.AnalizadorLexico
         {
             continuarAnalisis = false;
 
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
+
             return ComponenteLexico.crearDummy(lexema, Categoria.TABLA, numeroLinea, 1, 1);
         }
 
@@ -1084,6 +1104,7 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoTreinta()
         {
             continuarAnalisis = false;
+            devolverPuntero();
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
@@ -1134,6 +1155,7 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoTreintaYCuatro()
         {
             continuarAnalisis = false;
+            devolverPuntero();
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
@@ -1170,6 +1192,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoTreintaYSiete()
         {
             continuarAnalisis = false;
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             return ComponenteLexico.crearDummy(lexema, Categoria.DIFERENTE_QUE, numeroLinea, 1, 1);
         }
@@ -1224,6 +1251,11 @@ namespace Compilador.AnalizadorLexico
         {
             continuarAnalisis = false;
 
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
+
             return ComponenteLexico.crearDummy(lexema, Categoria.AND, numeroLinea, 1, 1);
         }
 
@@ -1261,6 +1293,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoCuarentaYCinco()
         {
             continuarAnalisis = false;
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             return ComponenteLexico.crearDummy(lexema, Categoria.ASC, numeroLinea, 1, 1);
         }
@@ -1326,6 +1363,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoCincuenta()
         {
             continuarAnalisis = false;
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             return ComponenteLexico.crearDummy(lexema, Categoria.DESC, numeroLinea, 1, 1);
         }
@@ -1406,6 +1448,11 @@ namespace Compilador.AnalizadorLexico
         {
             continuarAnalisis = false;
 
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
+
             return ComponenteLexico.crearDummy(lexema, Categoria.DECIMAL, numeroLinea, 1, 1);
         }
 
@@ -1450,7 +1497,12 @@ namespace Compilador.AnalizadorLexico
             }
             else if(esFinLinea())
             {
-                concatenar("'");
+                concatenar("\n");
+                cargarNuevaLinea();
+                estadoActual = 60;
+            }
+            else if(esFinArchivo())
+            {
                 estadoActual = 80;
             }
             else
@@ -1547,6 +1599,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoSesentaYSiete()
         {
             continuarAnalisis = false;
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             return ComponenteLexico.crearDummy(lexema, Categoria.WHERE, numeroLinea, 1, 1);
         }
@@ -1690,6 +1747,11 @@ namespace Compilador.AnalizadorLexico
         {
             continuarAnalisis = false;
 
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
+
             return ComponenteLexico.crearDummy(lexema, Categoria.ORDER_BY, numeroLinea, 1, 1);
         }
 
@@ -1706,6 +1768,11 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoOchenta()
         {
             continuarAnalisis = false;
+
+            if (!esFinLinea())
+            {
+                devolverPuntero();
+            }
 
             return ComponenteLexico.crearDummy(lexema, Categoria.LITERAL, numeroLinea, 1, 1);
         }
