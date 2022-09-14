@@ -399,6 +399,10 @@ namespace Compilador.AnalizadorLexico
                 {
                     retorno = procesarEstadoSetentaYNueve();
                 }
+                else if(estadoActual == 80)
+                {
+                    retorno = procesarEstadoOchenta();
+                }
             }
 
             return retorno;
@@ -777,6 +781,7 @@ namespace Compilador.AnalizadorLexico
             }
             else
             {
+                concatenar("ROM");
                 estadoActual = 12;
             }
         }
@@ -792,6 +797,7 @@ namespace Compilador.AnalizadorLexico
             }
             else
             {
+                concatenar("OM");
                 estadoActual = 12;
             }
         }
@@ -1262,7 +1268,7 @@ namespace Compilador.AnalizadorLexico
             }
             else
             {
-                concatenar("E");
+                concatenar("ESC");
                 estadoActual = 50;
             }
         }
@@ -1278,7 +1284,7 @@ namespace Compilador.AnalizadorLexico
             }
             else
             {
-                concatenar("S");
+                concatenar("SC");
                 estadoActual = 50;
             }
         }
@@ -1360,7 +1366,6 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoCincuentaYCinco()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
@@ -1409,7 +1414,6 @@ namespace Compilador.AnalizadorLexico
         private ComponenteLexico procesarEstadoCincuentaYNueve()
         {
             continuarAnalisis = false;
-            devolverPuntero();
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
@@ -1425,6 +1429,11 @@ namespace Compilador.AnalizadorLexico
             {
                 estadoActual = 61;
                 concatenar();
+            }
+            else if(esFinLinea())
+            {
+                concatenar("'");
+                estadoActual = 80;
             }
             else
             {
@@ -1674,6 +1683,13 @@ namespace Compilador.AnalizadorLexico
             int posicionFinal = puntero - 1;
 
             return ComponenteLexico.crearSimbolo(lexema, Categoria.COMA, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private ComponenteLexico procesarEstadoOchenta()
+        {
+            continuarAnalisis = false;
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.LITERAL, numeroLinea, 1, 1);
         }
     }
 }
