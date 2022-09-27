@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Compilador.Transversal.Componente
+namespace Compilador.ManejadorErrores
 {
-    public enum Tipo
+    public enum TipoError
     {
-        SIMBOLO, DUMMY, LITERAL, PALABRA_RESERVADA
+        LEXICO, SINTACTICO, SEMANTICO
     }
 }

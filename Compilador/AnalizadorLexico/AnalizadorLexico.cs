@@ -1,12 +1,15 @@
 ﻿using Compilador.Cache;
+using Compilador.ManejadorErrores;
 using Compilador.Transversal;
 using Compilador.Transversal.Componente;
+using Compilador.Transversal.TablasSimbolos;
 using System;
 
 namespace Compilador.AnalizadorLexico
 {
-    internal class AnalizadorLexico
+    public class AnalizadorLexico
     {
+        //ExtraClase
         private int puntero;
         private int numeroLinea;
         private Linea lineaActual;
@@ -405,6 +408,8 @@ namespace Compilador.AnalizadorLexico
                 }
             }
 
+            TablaMaestra.agregar(retorno);
+
             return retorno;
         }
 
@@ -777,6 +782,12 @@ namespace Compilador.AnalizadorLexico
                 devolverPuntero();
             }
 
+            string falla = "caracter del SELECT no valido";
+            string causa = "Se esperaba un caracter valido para la palabra reservada SELECT, pero se recibió \"" + caracterActual + "\"";
+            string solucion = "La palabra resevada correcta es SELECT";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+
             return ComponenteLexico.crearDummy(lexema, Categoria.SELECT, numeroLinea, 1, 1);
         }
 
@@ -846,6 +857,12 @@ namespace Compilador.AnalizadorLexico
             {
                 devolverPuntero();
             }
+
+            string falla = "caracter del FROM no valido";
+            string causa = "Se esperaba un caracter valido para la palabra reservada FROM, pero se recibió \"" + caracterActual + "\"";
+            string solucion = "La palabra resevada correcta es FROM";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
 
             return ComponenteLexico.crearDummy(lexema, Categoria.FROM, numeroLinea, 1, 1);
         }
@@ -957,6 +974,12 @@ namespace Compilador.AnalizadorLexico
                 devolverPuntero();
             }
 
+            string falla = "caracter del CAMPO no valido";
+            string causa = "Se esperaba un caracter valido para el CAMPO, pero se recibió \"" + caracterActual + "\"";
+            string solucion = "La palabra resevada para el campo CAM_";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+
             return ComponenteLexico.crearDummy(lexema, Categoria.CAMPO, numeroLinea, 1, 1);
         }
 
@@ -1067,6 +1090,12 @@ namespace Compilador.AnalizadorLexico
             {
                 devolverPuntero();
             }
+
+            string falla = "caracter de la TABLA no valido";
+            string causa = "Se esperaba un caracter valido para la TABLA, pero se recibió \"" + caracterActual + "\"";
+            string solucion = "La palabra resevada para la TABLA TAB_";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
 
             return ComponenteLexico.crearDummy(lexema, Categoria.TABLA, numeroLinea, 1, 1);
         }
@@ -1203,6 +1232,12 @@ namespace Compilador.AnalizadorLexico
                 devolverPuntero();
             }
 
+            string falla = "Simbolo del diferente que no valido";
+            string causa = "Se esperaba un caracter valido para el operador diferente que, pero se recibió \"" + caracterActual + "\"";
+            string solucion = "El operador diferente que puede ser != o <>";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+
             return ComponenteLexico.crearDummy(lexema, Categoria.DIFERENTE_QUE, numeroLinea, 1, 1);
         }
 
@@ -1261,6 +1296,12 @@ namespace Compilador.AnalizadorLexico
                 devolverPuntero();
             }
 
+            string falla = "Caracter del AND no valido";
+            string causa = "Se esperaba un caracter valido para el operador AND, pero se recibió \"" + caracterActual + "\"";
+            string solucion = "El operador AND puede ser AND o and";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+
             return ComponenteLexico.crearDummy(lexema, Categoria.AND, numeroLinea, 1, 1);
         }
 
@@ -1303,6 +1344,12 @@ namespace Compilador.AnalizadorLexico
             {
                 devolverPuntero();
             }
+
+            string falla = "Caracter del ASC no valido";
+            string causa = "Se esperaba un caracter valido para el operador ASC, pero se recibió \"" + caracterActual + "\"";
+            string solucion = "El operador ASC puede ser ASC o asc";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
 
             return ComponenteLexico.crearDummy(lexema, Categoria.ASC, numeroLinea, 1, 1);
         }
@@ -1374,6 +1421,12 @@ namespace Compilador.AnalizadorLexico
                 devolverPuntero();
             }
 
+            string falla = "Caracter del DESC no valido";
+            string causa = "Se esperaba un caracter valido para el operador DESC pero se recibió \"" + caracterActual + "\"";
+            string solucion = "El operador DESC puede ser DESC o desc";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+
             return ComponenteLexico.crearDummy(lexema, Categoria.DESC, numeroLinea, 1, 1);
         }
 
@@ -1389,6 +1442,15 @@ namespace Compilador.AnalizadorLexico
 
         private void procesarEstadoCincuentaYDos()
         {
+            string falla = "Simbolo no reconocido por el lenguaje";
+            string causa = "Recibí \"" + caracterActual + "\"";
+            string solucion = "Asegurese de que el programa de entrada solo contenga simbolos validos";
+
+            int posicionInicial = puntero - 1;
+            int posicionFinal = puntero - 1;
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
+
             throw new Exception("Se ha presentado un problema durante el analisis lexico, dado que se leyo un simbolo desconocido, el cual es " + caracterActual);
         }
 
@@ -1457,6 +1519,12 @@ namespace Compilador.AnalizadorLexico
             {
                 devolverPuntero();
             }
+
+            string falla = "Numero o decimal no valido";
+            string causa = "Luego del separador decimal, se debe recibir un digito y se recibio \"" + caracterActual + "\"";
+            string solucion = "luego del separador decimal se debe recibir un digito";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
 
             return ComponenteLexico.crearDummy(lexema, Categoria.DECIMAL, numeroLinea, 1, 1);
         }
@@ -1609,6 +1677,12 @@ namespace Compilador.AnalizadorLexico
             {
                 devolverPuntero();
             }
+
+            string falla = "Caracter del WHERE no valido";
+            string causa = "Se esperaba un caracter valido la palabra reservada WHERE pero se recibió \"" + caracterActual + "\"";
+            string solucion = "El operador WHERE puede ser WHERE o where";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
 
             return ComponenteLexico.crearDummy(lexema, Categoria.WHERE, numeroLinea, 1, 1);
         }
@@ -1766,6 +1840,12 @@ namespace Compilador.AnalizadorLexico
                 devolverPuntero();
             }
 
+            string falla = "Caracter del ORDER BY no valido";
+            string causa = "Se esperaba un caracter valido para la palabra reservada ORDER BY pero se recibió \"" + caracterActual + "\"";
+            string solucion = "La palabra reservada ORDER BY puede ser ORDER BY o order by";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+
             return ComponenteLexico.crearDummy(lexema, Categoria.ORDER_BY, numeroLinea, 1, 1);
         }
 
@@ -1775,6 +1855,8 @@ namespace Compilador.AnalizadorLexico
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
+
+
 
             return ComponenteLexico.crearSimbolo(lexema, Categoria.COMA, numeroLinea, posicionInicial, posicionFinal);
         }
@@ -1787,6 +1869,12 @@ namespace Compilador.AnalizadorLexico
             {
                 devolverPuntero();
             }
+
+            string falla = "Caracter del LITERAL no valido";
+            string causa = "Se esperaba un caracter valido para el LITERAL pero se recibió \"" + caracterActual + "\"";
+            string solucion = "El literal debe terminar en comilla simple";
+
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
 
             return ComponenteLexico.crearDummy(lexema, Categoria.LITERAL, numeroLinea, 1, 1);
         }

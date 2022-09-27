@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Compilador.Transversal.Componente
 {
-    internal class ComponenteLexico
+    public class ComponenteLexico
     {
         private String lexema;
         private Categoria categoria;
@@ -12,7 +12,7 @@ namespace Compilador.Transversal.Componente
         private int posicionInicial;
         private int posicionFinal;
 
-        public ComponenteLexico(string lexema, Categoria categoria, Tipo tipo, int numeroLinea, int posicionInicial, int posicionFinal)
+        private ComponenteLexico(string lexema, Categoria categoria, Tipo tipo, int numeroLinea, int posicionInicial, int posicionFinal)
         {
             this.lexema = lexema;
             this.categoria = categoria;
@@ -30,6 +30,11 @@ namespace Compilador.Transversal.Componente
         public static ComponenteLexico crearDummy(string lexema, Categoria categoria, int numeroLinea, int posicionInicial, int posicionFinal)
         {
             return new ComponenteLexico(lexema, categoria, Tipo.DUMMY, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        public static ComponenteLexico crearPalabraReservada(string lexema, Categoria categoria, int numeroLinea, int posicionInicial, int posicionFinal)
+        {
+            return new ComponenteLexico(lexema, categoria, Tipo.PALABRA_RESERVADA, numeroLinea, posicionInicial, posicionFinal);
         }
 
         public string obtenerLexema()

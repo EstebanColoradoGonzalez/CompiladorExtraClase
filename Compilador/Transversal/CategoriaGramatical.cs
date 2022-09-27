@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Compilador.Transversal
 {
-    internal class CategoriaGramatical
+    public class CategoriaGramatical
     {
         public static string FIN_ARCHIVO = "@EOF@";
         public static string FIN_LINEA = "@FL@";
