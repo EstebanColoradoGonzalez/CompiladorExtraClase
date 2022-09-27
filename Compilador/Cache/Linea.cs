@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Compilador.Cache
 {
-    internal class Linea
+    public class Linea
     {
         private int numeroLinea;
         private String contenido;

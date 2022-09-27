@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Compilador.Cache
 {
-    internal class ProgramaFuente
+    public class ProgramaFuente
     {
         private List<Linea> lineas = new List<Linea>();
         private static ProgramaFuente INSTANCIA = new ProgramaFuente();

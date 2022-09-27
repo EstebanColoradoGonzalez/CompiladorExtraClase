@@ -71,27 +71,34 @@ namespace Compilador
 
         private void buttonCargar_Click(object sender, EventArgs e)
         {
-            ProgramaFuente cache = ProgramaFuente.obtenerProgramaFuente();
-
-            textBoxResultado.Text = String.Empty;
-            procesarTexto();
-
-            foreach (Linea linea in cache.obtenerLineas())
+            try
             {
-                textBoxResultado.AddLine(linea.obtenerNumeroLinea() + " >> " + linea.obtenerContenido());
+                ProgramaFuente cache = ProgramaFuente.obtenerProgramaFuente();
+
+                textBoxResultado.Text = String.Empty;
+                procesarTexto();
+
+                foreach (Linea linea in cache.obtenerLineas())
+                {
+                    textBoxResultado.AddLine(linea.obtenerNumeroLinea() + " >> " + linea.obtenerContenido());
+                }
+
+                AnalizadorLexico.AnalizadorLexico analizadorLexico = AnalizadorLexico.AnalizadorLexico.crear();
+
+                ComponenteLexico componente = null;
+
+                do
+                {
+                    componente = analizadorLexico.devolverComponente();
+
+                    MessageBox.Show(componente.ToString());
+                }
+                while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));
             }
-
-            AnalizadorLexico.AnalizadorLexico analizadorLexico = AnalizadorLexico.AnalizadorLexico.crear();
-
-            ComponenteLexico componente = null;
-
-            do
+            catch(Exception exception)
             {
-                componente = analizadorLexico.devolverComponente();
-
-                MessageBox.Show(componente.ToString());
+                MessageBox.Show(exception.Message);
             }
-            while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));
         }
 
         private void procesarTexto()
