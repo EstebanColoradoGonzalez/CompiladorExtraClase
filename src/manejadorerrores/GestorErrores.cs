@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Compilador.src.transversal.componentes;
+using Compilador.src.transversal.tablas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Compilador.src.manejadorerrores
 {
@@ -20,6 +23,26 @@ namespace Compilador.src.manejadorerrores
                 TABLA_ERRORES.Add(TipoError.SEMANTICO, new List<Error>());
 
                 estaInicializada = true;
+            }
+        }
+
+        public static List<Error> obtenerErrores(TipoError error)
+        {
+            if (TipoError.LEXICO.Equals(error))
+            {
+                return TABLA_ERRORES[error];
+            }
+            else if (TipoError.SEMANTICO.Equals(error))
+            {
+                return TABLA_ERRORES[error];
+            }
+            else if (TipoError.SINTACTICO.Equals(error))
+            {
+                return TABLA_ERRORES[error];
+            }
+            else
+            {
+                return new List<Error>();
             }
         }
 

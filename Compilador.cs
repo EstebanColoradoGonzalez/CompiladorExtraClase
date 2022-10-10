@@ -1,6 +1,8 @@
 ﻿using Compilador.Source.AnalizadorLexico;
 using Compilador.src.cache;
+using Compilador.src.manejadorerrores;
 using Compilador.src.transversal.componentes;
+using Compilador.src.transversal.tablas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -157,6 +159,258 @@ namespace Compilador
                     cache.agregarLinea(valorLinea);
                 }
                 cache.agregarLinea(CategoriaGramatical.FIN_ARCHIVO);
+            }
+        }
+
+        private void tablaSimbolosButton_Click(object sender, EventArgs e)
+        {
+            tablaSimboloGroupBox.Show();
+            tablaLiteralGroupBox.Hide();
+            tablaDummyGroupBox.Hide();
+            tablaPalabraReservadaGroupBox.Hide();
+
+            limpiarTabla(simbolosDataGridView);
+            llenarTablaSimbolos();
+        }
+
+        private void llenarTablaSimbolos()
+        {
+            var tabla = TablaMaestra.obtenerComponente(Tipo.SIMBOLO);
+
+            foreach (ComponenteLexico componente in tabla)
+            {
+                adicionarCeldaATablaSimbolos(componente.obtenerNumeroLinea(), componente.obtenerPosicionInicial(), componente.obtenerPosicionFinal(), componente.obtenerCategoria(), componente.obtenerLexema());
+            }
+
+            autocompletarColumnas(simbolosDataGridView, 5);
+        }
+
+        private void adicionarCeldaATablaSimbolos(int numeroLinea, int posicionInicial, int posicionFinal, Categoria categoria, string lexema)
+        {
+            int numero = simbolosDataGridView.Rows.Add();
+
+            simbolosDataGridView.Rows[numero].Cells[0].Value = numeroLinea.ToString();
+            simbolosDataGridView.Rows[numero].Cells[1].Value = posicionInicial.ToString();
+            simbolosDataGridView.Rows[numero].Cells[2].Value = posicionFinal.ToString();
+            simbolosDataGridView.Rows[numero].Cells[3].Value = categoria;
+            simbolosDataGridView.Rows[numero].Cells[4].Value = lexema;
+        }
+
+        private void tablaLiteralesButton_Click(object sender, EventArgs e)
+        {
+            tablaSimboloGroupBox.Hide();
+            tablaLiteralGroupBox.Show();
+            tablaDummyGroupBox.Hide();
+            tablaPalabraReservadaGroupBox.Hide();
+
+            limpiarTabla(literalesDataGridView);
+            llenarTablaLiterales();
+        }
+
+        private void llenarTablaLiterales()
+        {
+            var tabla = TablaMaestra.obtenerComponente(Tipo.LITERAL);
+
+            foreach (ComponenteLexico componente in tabla)
+            {
+                adicionarCeldaATablaLiterales(componente.obtenerNumeroLinea(), componente.obtenerPosicionInicial(), componente.obtenerPosicionFinal(), componente.obtenerCategoria(), componente.obtenerLexema());
+            }
+
+            autocompletarColumnas(literalesDataGridView, 5);
+        }
+
+        private void adicionarCeldaATablaLiterales(int numeroLinea, int posicionInicial, int posicionFinal, Categoria categoria, string lexema)
+        {
+            int numero = literalesDataGridView.Rows.Add();
+
+            literalesDataGridView.Rows[numero].Cells[0].Value = numeroLinea.ToString();
+            literalesDataGridView.Rows[numero].Cells[1].Value = posicionInicial.ToString();
+            literalesDataGridView.Rows[numero].Cells[2].Value = posicionFinal.ToString();
+            literalesDataGridView.Rows[numero].Cells[3].Value = categoria;
+            literalesDataGridView.Rows[numero].Cells[4].Value = lexema;
+        }
+
+        private void tablaDummiesButton_Click(object sender, EventArgs e)
+        {
+            tablaSimboloGroupBox.Hide();
+            tablaLiteralGroupBox.Hide();
+            tablaDummyGroupBox.Show();
+            tablaPalabraReservadaGroupBox.Hide();
+
+            limpiarTabla(dummiesDataGridView);
+            llenarTablaDummies();
+        }
+
+        private void llenarTablaDummies()
+        {
+            var tabla = TablaMaestra.obtenerComponente(Tipo.DUMMY);
+
+            foreach (ComponenteLexico componente in tabla)
+            {
+                adicionarCeldaATablaDummies(componente.obtenerNumeroLinea(), componente.obtenerPosicionInicial(), componente.obtenerPosicionFinal(), componente.obtenerCategoria(), componente.obtenerLexema());
+            }
+
+            autocompletarColumnas(dummiesDataGridView, 5);
+        }
+
+        private void adicionarCeldaATablaDummies(int numeroLinea, int posicionInicial, int posicionFinal, Categoria categoria, string lexema)
+        {
+            int numero = dummiesDataGridView.Rows.Add();
+
+            dummiesDataGridView.Rows[numero].Cells[0].Value = numeroLinea.ToString();
+            dummiesDataGridView.Rows[numero].Cells[1].Value = posicionInicial.ToString();
+            dummiesDataGridView.Rows[numero].Cells[2].Value = posicionFinal.ToString();
+            dummiesDataGridView.Rows[numero].Cells[3].Value = categoria;
+            dummiesDataGridView.Rows[numero].Cells[4].Value = lexema;
+        }
+
+        private void tablaPalabrasReservadasButton_Click(object sender, EventArgs e)
+        {
+            tablaSimboloGroupBox.Hide();
+            tablaLiteralGroupBox.Hide();
+            tablaDummyGroupBox.Hide();
+            tablaPalabraReservadaGroupBox.Show();
+
+            limpiarTabla(palabrasReservadasDataGridView);
+            llenarTablaPalabrasReservadas();
+        }
+
+        private void llenarTablaPalabrasReservadas()
+        {
+            var tabla = TablaMaestra.obtenerComponente(Tipo.PALABRA_RESERVADA);
+
+            foreach (ComponenteLexico componente in tabla)
+            {
+                adicionarCeldaATablaPalabrasReservadas(componente.obtenerNumeroLinea(), componente.obtenerPosicionInicial(), componente.obtenerPosicionFinal(), componente.obtenerCategoria(), componente.obtenerLexema());
+            }
+
+            autocompletarColumnas(palabrasReservadasDataGridView, 5);
+        }
+
+        private void adicionarCeldaATablaPalabrasReservadas(int numeroLinea, int posicionInicial, int posicionFinal, Categoria categoria, string lexema)
+        {
+            int numero = palabrasReservadasDataGridView.Rows.Add();
+
+            palabrasReservadasDataGridView.Rows[numero].Cells[0].Value = numeroLinea.ToString();
+            palabrasReservadasDataGridView.Rows[numero].Cells[1].Value = posicionInicial.ToString();
+            palabrasReservadasDataGridView.Rows[numero].Cells[2].Value = posicionFinal.ToString();
+            palabrasReservadasDataGridView.Rows[numero].Cells[3].Value = categoria;
+            palabrasReservadasDataGridView.Rows[numero].Cells[4].Value = lexema;
+        }
+
+        private void tablaErroresLexicosButton_Click(object sender, EventArgs e)
+        {
+            tablaErroresLexicosGroupBox.Show();
+            tablaErroresSemanticosGroupBox.Hide();
+            tablaErroresSintacticosGroupBox.Hide();
+
+            limpiarTabla(erroresLexicosDataGridView);
+            llenarTablaErroresLexicos();
+        }
+
+        private void llenarTablaErroresLexicos()
+        {
+            var tabla = GestorErrores.obtenerErrores(TipoError.LEXICO);
+
+            foreach (Error error in tabla)
+            {
+                adicionarCeldaATablaErroresLexicos(error.getNumeroLinea(), error.getPosicionInicial(), error.getPosicionFinal(), error.getFalla(), error.getCausa(), error.getSolucion());
+            }
+
+            autocompletarColumnas(erroresLexicosDataGridView, 6);
+        }
+
+        private void adicionarCeldaATablaErroresLexicos(int numeroLinea, int posicionInicial, int posicionFinal, string falla, string causa, string solucion)
+        {
+            int numero = erroresLexicosDataGridView.Rows.Add();
+
+            erroresLexicosDataGridView.Rows[numero].Cells[0].Value = numeroLinea.ToString();
+            erroresLexicosDataGridView.Rows[numero].Cells[1].Value = posicionInicial.ToString();
+            erroresLexicosDataGridView.Rows[numero].Cells[2].Value = posicionFinal.ToString();
+            erroresLexicosDataGridView.Rows[numero].Cells[3].Value = falla as String;
+            erroresLexicosDataGridView.Rows[numero].Cells[4].Value = causa as String;
+            erroresLexicosDataGridView.Rows[numero].Cells[5].Value = solucion as String;
+        }
+
+        private void tablaErroresSemanticosButton_Click(object sender, EventArgs e)
+        {
+            tablaErroresLexicosGroupBox.Hide();
+            tablaErroresSemanticosGroupBox.Show();
+            tablaErroresSintacticosGroupBox.Hide();
+
+            limpiarTabla(erroresSemanticosDataGridView);
+            llenarTablaErroresSemanticos();
+        }
+
+        private void llenarTablaErroresSemanticos()
+        {
+            var tabla = GestorErrores.obtenerErrores(TipoError.LEXICO);
+
+            foreach (Error error in tabla)
+            {
+                adicionarCeldaATablaErroresSemanticos(error.getNumeroLinea(), error.getPosicionInicial(), error.getPosicionFinal(), error.getFalla(), error.getCausa(), error.getSolucion());
+            }
+
+            autocompletarColumnas(erroresSemanticosDataGridView, 6);
+        }
+
+        private void adicionarCeldaATablaErroresSemanticos(int numeroLinea, int posicionInicial, int posicionFinal, string falla, string causa, string solucion)
+        {
+            int numero = erroresSemanticosDataGridView.Rows.Add();
+
+            erroresSemanticosDataGridView.Rows[numero].Cells[0].Value = numeroLinea.ToString();
+            erroresSemanticosDataGridView.Rows[numero].Cells[1].Value = posicionInicial.ToString();
+            erroresSemanticosDataGridView.Rows[numero].Cells[2].Value = posicionFinal.ToString();
+            erroresSemanticosDataGridView.Rows[numero].Cells[3].Value = falla as String;
+            erroresSemanticosDataGridView.Rows[numero].Cells[4].Value = causa as String;
+            erroresSemanticosDataGridView.Rows[numero].Cells[5].Value = solucion as String;
+        }
+
+        private void tablaErroresSintacticosButton_Click(object sender, EventArgs e)
+        {
+            tablaErroresLexicosGroupBox.Hide();
+            tablaErroresSemanticosGroupBox.Hide();
+            tablaErroresSintacticosGroupBox.Show();
+
+            limpiarTabla(erroresSintacticosDataGridView);
+            llenarTablaErroresSintacticos();
+        }
+
+        private void llenarTablaErroresSintacticos()
+        {
+            var tabla = GestorErrores.obtenerErrores(TipoError.LEXICO);
+
+            foreach (Error error in tabla)
+            {
+                adicionarCeldaATablaErroresSintacticos(error.getNumeroLinea(), error.getPosicionInicial(), error.getPosicionFinal(), error.getFalla(), error.getCausa(), error.getSolucion());
+            }
+
+            autocompletarColumnas(erroresSintacticosDataGridView, 6);
+        }
+
+
+        private void adicionarCeldaATablaErroresSintacticos(int numeroLinea, int posicionInicial, int posicionFinal, string falla, string causa, string solucion)
+        {
+            int numero = erroresSintacticosDataGridView.Rows.Add();
+
+            erroresSintacticosDataGridView.Rows[numero].Cells[0].Value = numeroLinea.ToString();
+            erroresSintacticosDataGridView.Rows[numero].Cells[1].Value = posicionInicial.ToString();
+            erroresSintacticosDataGridView.Rows[numero].Cells[2].Value = posicionFinal.ToString();
+            erroresSintacticosDataGridView.Rows[numero].Cells[3].Value = falla as String;
+            erroresSintacticosDataGridView.Rows[numero].Cells[4].Value = causa as String;
+            erroresSintacticosDataGridView.Rows[numero].Cells[5].Value = solucion as String;
+        }
+
+        private void limpiarTabla(DataGridView dataGridView)
+        {
+            dataGridView.Rows.Clear();
+        }
+
+        private void autocompletarColumnas(DataGridView dataGridView, int tamaño)
+        {
+            for (int i = 0; i < tamaño; i++)
+            {
+                dataGridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             }
         }
     }
