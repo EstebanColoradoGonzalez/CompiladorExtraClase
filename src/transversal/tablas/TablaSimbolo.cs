@@ -31,7 +31,6 @@ namespace Compilador.src.transversal.tablas
             if (componenteLexico != null && Tipo.SIMBOLO.Equals(componenteLexico.obtenerTipo()))
             {
                 obtenerComponentes(componenteLexico.obtenerLexema()).Add(componenteLexico);
-
             }
         }
 
