@@ -1,11 +1,4 @@
-﻿using Compilador.src.transversal.componentes;
-using Compilador.src.transversal.tablas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+﻿using System.Collections.Generic;
 
 namespace Compilador.src.manejadorerrores
 {
@@ -61,7 +54,7 @@ namespace Compilador.src.manejadorerrores
             return TABLA_ERRORES[tipo].Count > 0;
         }
 
-        public static bool hayErroresAnalisis()
+        public static bool hayErrores()
         {
             return hayErrores(TipoError.LEXICO) || hayErrores(TipoError.SINTACTICO) || hayErrores(TipoError.SEMANTICO);
         }

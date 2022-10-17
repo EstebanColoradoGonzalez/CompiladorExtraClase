@@ -55,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\analizadorlexico\AnalizadorLexico.cs" />
+    <Compile Include="src\analizadorsintactico\AnalizadorSintactico.cs" />
     <Compile Include="src\cache\Linea.cs" />
     <Compile Include="src\cache\ProgramaFuente.cs" />
     <Compile Include="src\manejadorerrores\Error.cs" />

@@ -1,17 +1,10 @@
-﻿using Compilador.Source.AnalizadorLexico;
+﻿using Compilador.src.analizadorsintactico;
 using Compilador.src.cache;
 using Compilador.src.manejadorerrores;
 using Compilador.src.transversal.componentes;
 using Compilador.src.transversal.tablas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Compilador
@@ -57,7 +50,11 @@ namespace Compilador
                     salidaConsolaTextBox.AddLine(linea.obtenerNumeroLinea() + " >> " + linea.obtenerContenido());
                 }
 
-                AnalizadorLexico analizadorLexico = AnalizadorLexico.crear();
+                AnalizadorSintactico analizadorSintactico = new AnalizadorSintactico();
+
+                analizadorSintactico.analizar();
+
+                /*AnalizadorLexico analizadorLexico = AnalizadorLexico.crear();
 
                 ComponenteLexico componente = null;
 
@@ -67,7 +64,7 @@ namespace Compilador
 
                     MessageBox.Show(componente.ToString());
                 }
-                while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));
+                while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));*/
             }
             catch (Exception exception)
             {
@@ -94,7 +91,11 @@ namespace Compilador
                     salidaArchivoTextBox.AddLine(linea.obtenerNumeroLinea() + " >> " + linea.obtenerContenido());
                 }
 
-                AnalizadorLexico analizadorLexico = AnalizadorLexico.crear();
+                AnalizadorSintactico analizadorSintactico = new AnalizadorSintactico();
+
+                analizadorSintactico.analizar();
+
+                /*AnalizadorLexico analizadorLexico = AnalizadorLexico.crear();
 
                 ComponenteLexico componente = null;
 
@@ -104,7 +105,7 @@ namespace Compilador
 
                     MessageBox.Show(componente.ToString());
                 }
-                while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));
+                while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));*/
             }
             catch (Exception exception)
             {

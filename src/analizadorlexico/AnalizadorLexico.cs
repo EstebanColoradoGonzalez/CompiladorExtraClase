@@ -3,16 +3,11 @@ using Compilador.src.manejadorerrores;
 using Compilador.src.transversal.componentes;
 using Compilador.src.transversal.tablas;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Compilador.Source.AnalizadorLexico
 {
     public class AnalizadorLexico
     {
-        //ExtraClase
         private int puntero;
         private int numeroLinea;
         private Linea lineaActual;
