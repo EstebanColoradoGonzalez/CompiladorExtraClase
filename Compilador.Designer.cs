@@ -46,6 +46,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.salidaArchivoTextBox = new System.Windows.Forms.TextBox();
             this.tablasTab = new System.Windows.Forms.TabPage();
+            this.tablaDummyGroupBox = new System.Windows.Forms.GroupBox();
+            this.dummiesDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tablaPalabraReservadaGroupBox = new System.Windows.Forms.GroupBox();
             this.palabrasReservadasDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,13 +61,6 @@
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tablaLiteralGroupBox = new System.Windows.Forms.GroupBox();
-            this.tablaDummyGroupBox = new System.Windows.Forms.GroupBox();
-            this.dummiesDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.literalesDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,11 +110,11 @@
             this.consolaTab.SuspendLayout();
             this.archivoTab.SuspendLayout();
             this.tablasTab.SuspendLayout();
+            this.tablaDummyGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dummiesDataGridView)).BeginInit();
             this.tablaPalabraReservadaGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.palabrasReservadasDataGridView)).BeginInit();
             this.tablaLiteralGroupBox.SuspendLayout();
-            this.tablaDummyGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dummiesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.literalesDataGridView)).BeginInit();
             this.tablaSimboloGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.simbolosDataGridView)).BeginInit();
@@ -399,6 +399,68 @@
             this.tablasTab.Text = "Tablas";
             this.tablasTab.UseVisualStyleBackColor = true;
             // 
+            // tablaDummyGroupBox
+            // 
+            this.tablaDummyGroupBox.Controls.Add(this.dummiesDataGridView);
+            this.tablaDummyGroupBox.Location = new System.Drawing.Point(237, 6);
+            this.tablaDummyGroupBox.Name = "tablaDummyGroupBox";
+            this.tablaDummyGroupBox.Size = new System.Drawing.Size(575, 487);
+            this.tablaDummyGroupBox.TabIndex = 15;
+            this.tablaDummyGroupBox.TabStop = false;
+            this.tablaDummyGroupBox.Text = "Tabla de Dummies";
+            // 
+            // dummiesDataGridView
+            // 
+            this.dummiesDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dummiesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dummiesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn15});
+            this.dummiesDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dummiesDataGridView.Location = new System.Drawing.Point(6, 25);
+            this.dummiesDataGridView.Name = "dummiesDataGridView";
+            this.dummiesDataGridView.Size = new System.Drawing.Size(563, 456);
+            this.dummiesDataGridView.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn11.HeaderText = "Número de Linea";
+            this.dataGridViewTextBoxColumn11.MaxInputLength = 999999;
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.HeaderText = "Posición Inicial";
+            this.dataGridViewTextBoxColumn12.MaxInputLength = 999999;
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.HeaderText = "Posición Final";
+            this.dataGridViewTextBoxColumn13.MaxInputLength = 999999;
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.HeaderText = "Categoria";
+            this.dataGridViewTextBoxColumn14.MaxInputLength = 999999;
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.HeaderText = "Lexema";
+            this.dataGridViewTextBoxColumn15.MaxInputLength = 999999;
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            // 
             // tablaPalabraReservadaGroupBox
             // 
             this.tablaPalabraReservadaGroupBox.Controls.Add(this.palabrasReservadasDataGridView);
@@ -470,68 +532,6 @@
             this.tablaLiteralGroupBox.TabIndex = 14;
             this.tablaLiteralGroupBox.TabStop = false;
             this.tablaLiteralGroupBox.Text = "Tabla de Literales";
-            // 
-            // tablaDummyGroupBox
-            // 
-            this.tablaDummyGroupBox.Controls.Add(this.dummiesDataGridView);
-            this.tablaDummyGroupBox.Location = new System.Drawing.Point(237, 6);
-            this.tablaDummyGroupBox.Name = "tablaDummyGroupBox";
-            this.tablaDummyGroupBox.Size = new System.Drawing.Size(575, 487);
-            this.tablaDummyGroupBox.TabIndex = 15;
-            this.tablaDummyGroupBox.TabStop = false;
-            this.tablaDummyGroupBox.Text = "Tabla de Dummies";
-            // 
-            // dummiesDataGridView
-            // 
-            this.dummiesDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dummiesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dummiesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn15});
-            this.dummiesDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dummiesDataGridView.Location = new System.Drawing.Point(6, 25);
-            this.dummiesDataGridView.Name = "dummiesDataGridView";
-            this.dummiesDataGridView.Size = new System.Drawing.Size(563, 456);
-            this.dummiesDataGridView.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn11.HeaderText = "Número de Linea";
-            this.dataGridViewTextBoxColumn11.MaxInputLength = 999999;
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.HeaderText = "Posición Inicial";
-            this.dataGridViewTextBoxColumn12.MaxInputLength = 999999;
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.HeaderText = "Posición Final";
-            this.dataGridViewTextBoxColumn13.MaxInputLength = 999999;
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.HeaderText = "Categoria";
-            this.dataGridViewTextBoxColumn14.MaxInputLength = 999999;
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.HeaderText = "Lexema";
-            this.dataGridViewTextBoxColumn15.MaxInputLength = 999999;
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
             // 
             // literalesDataGridView
             // 
@@ -723,6 +723,7 @@
             // 
             this.erroresTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.erroresTab.Controls.Add(this.tablaErroresSintacticosGroupBox);
+            this.erroresTab.Controls.Add(this.tablaErroresSemanticosGroupBox);
             this.erroresTab.Controls.Add(this.tablaErroresLexicosGroupBox);
             this.erroresTab.Controls.Add(this.tablaErroresSintacticosButton);
             this.erroresTab.Controls.Add(this.tablaErroresSemanticosButton);
@@ -817,7 +818,6 @@
             // 
             // tablaErroresLexicosGroupBox
             // 
-            this.tablaErroresLexicosGroupBox.Controls.Add(this.tablaErroresSemanticosGroupBox);
             this.tablaErroresLexicosGroupBox.Controls.Add(this.erroresLexicosDataGridView);
             this.tablaErroresLexicosGroupBox.Location = new System.Drawing.Point(237, 6);
             this.tablaErroresLexicosGroupBox.Name = "tablaErroresLexicosGroupBox";
@@ -829,7 +829,7 @@
             // tablaErroresSemanticosGroupBox
             // 
             this.tablaErroresSemanticosGroupBox.Controls.Add(this.erroresSemanticosDataGridView);
-            this.tablaErroresSemanticosGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.tablaErroresSemanticosGroupBox.Location = new System.Drawing.Point(237, 6);
             this.tablaErroresSemanticosGroupBox.Name = "tablaErroresSemanticosGroupBox";
             this.tablaErroresSemanticosGroupBox.Size = new System.Drawing.Size(575, 487);
             this.tablaErroresSemanticosGroupBox.TabIndex = 16;
@@ -1051,11 +1051,11 @@
             this.archivoTab.ResumeLayout(false);
             this.archivoTab.PerformLayout();
             this.tablasTab.ResumeLayout(false);
+            this.tablaDummyGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dummiesDataGridView)).EndInit();
             this.tablaPalabraReservadaGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.palabrasReservadasDataGridView)).EndInit();
             this.tablaLiteralGroupBox.ResumeLayout(false);
-            this.tablaDummyGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dummiesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.literalesDataGridView)).EndInit();
             this.tablaSimboloGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.simbolosDataGridView)).EndInit();
