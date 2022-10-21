@@ -2,6 +2,7 @@
 using Compilador.src.manejadorerrores;
 using Compilador.src.transversal.componentes;
 using System;
+using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
 
 namespace Compilador.src.analizadorsintactico
@@ -19,13 +20,14 @@ namespace Compilador.src.analizadorsintactico
         public void analizar()
         {
             pedirComponente();
-            evaluarExpresion();
+            evaluarQuery();
 
-            if(GestorErrores.hayErrores())
+
+            if (GestorErrores.hayErrores())
             {
                 MessageBox.Show("Hay errores durante el proceso de compilación");
             }
-            else if(Categoria.FIN_ARCHIVO.Equals(this.componente.obtenerCategoria()))
+            else if (Categoria.FIN_ARCHIVO.Equals(this.componente.obtenerCategoria()))
             {
                 MessageBox.Show("El programa está bien escrito.");
             }
@@ -34,33 +36,48 @@ namespace Compilador.src.analizadorsintactico
                 MessageBox.Show("El programa está bien escrito, pero faltarón componentes por evaluar.");
             }
         }
-        
+
 
         ///
-        /// <EXPRESION> -> <SELECT>|<SELECT> <WHERE>|<SELECT> <WHERE> <ORDER_BY>|<SELECT> <ORDER_BY>
+        /// <QUERY>::=<SELECT><WHERE><ORDER_BY>
         ///
 
-        private void evaluarExpresion()
+        private void evaluarQuery()
         {
-            if(Categoria.SELECT.Equals(this.componente.obtenerCategoria()))
+            evaluarSelect();
+            evaluarWhere();
+            evaluarOrderBy();
+        }
+
+        ///
+        /// <SELECT>::=SELECT<CAMPOS>FROM<TABLAS>
+        ///
+
+        private void evaluarSelect()
+        {
+            if (Categoria.SELECT.Equals(this.componente.obtenerCategoria()))
             {
                 pedirComponente();
-                evaluarSelect();
+                evaluarCampos();
 
-                if(Categoria.WHERE.Equals(this.componente.obtenerCategoria()))
+                if (Categoria.FROM.Equals(this.componente.obtenerCategoria()))
                 {
                     pedirComponente();
-                    evaluarWhere();
-
-                    if (Categoria.ORDER_BY.Equals(this.componente.obtenerCategoria()))
-                    {
-                        pedirComponente();
-                        evaluarOrderBy();
-                    }
+                    evaluarTablas();
                 }
-                else if(Categoria.ORDER_BY.Equals(this.componente.obtenerCategoria()))
+                else
                 {
-                    evaluarOrderBy();
+                    int numeroLinea = this.componente.obtenerNumeroLinea();
+                    int posicionInicial = this.componente.obtenerPosicionInicial();
+                    int posicionFinal = this.componente.obtenerPosicionFinal();
+                    string falla = "Componente de la expresión no valido";
+                    string causa = "Se esperaba un FROM, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                    string solucion = "Asegurese de que la consulta tenga la consulta tenga la siguiente estructura: SELECT<CAMPOS>FROM<TABLAS>";
+                    string lexema = this.componente.obtenerLexema();
+
+                    GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
+
+                    throw new Exception("Se ha presentado un problema durante el analisis sintactico, dado que se esperaba un FROM pero se leyó " + lexema);
                 }
             }
             else
@@ -70,7 +87,7 @@ namespace Compilador.src.analizadorsintactico
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
                 string causa = "Se esperaba un SELECT, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
-                string solucion = "Asegurese de que la expresión comienza por un SELECT";
+                string solucion = "Asegurese de que la consulta empiece por un select";
                 string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
@@ -80,62 +97,37 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <SELECT> -> SELECT <CAMPOS> FROM <TABLAS>
-        ///
-
-        private void evaluarSelect()
-        {
-            pedirComponente();
-            evaluarCampos();
-
-            if(Categoria.FROM.Equals(this.componente.obtenerCategoria()))
-            {
-                pedirComponente();
-                evaluarTablas();
-            }
-            else
-            {
-                int numeroLinea = this.componente.obtenerNumeroLinea();
-                int posicionInicial = this.componente.obtenerPosicionInicial();
-                int posicionFinal = this.componente.obtenerPosicionFinal();
-                string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un FROM, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
-                string solucion = "Asegurese de que la consulta del SELECT vaya precedida por un FROM";
-                string lexema = this.componente.obtenerLexema();
-
-                GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
-
-                throw new Exception("Se ha presentado un problema durante el analisis sintactico, dado que se esperaba un FROM pero se leyó " + lexema);
-            }
-        }
-
-        ///
-        /// <WHERE> -> WHERE <CONDICION>
+        /// <WHERE>::=WHERE<CONDICION>|EPSILON
         ///
 
         private void evaluarWhere()
         {
-            pedirComponente();
-            evaluarCondicion();
+            if(Categoria.WHERE.Equals(this.componente.obtenerCategoria()))
+            {
+                pedirComponente();
+                evaluarCondicion();
+            }
         }
 
         ///
-        /// <ORDER_BY> -> ORDER BY <ORDENADORES>
+        /// <ORDER_BY>::=ORDER BY<ORDENADORES>|EPSILON
         ///
 
         private void evaluarOrderBy()
         {
-            pedirComponente();
-            evaluarOrdenadores();
+            if (Categoria.ORDER_BY.Equals(this.componente.obtenerCategoria()))
+            {
+                pedirComponente();
+                evaluarOrdenadores();
+            }
         }
 
         ///
-        /// <CONDICION> -> <OPERACION>|<OPERACION> <CONECTOR> <CONDICION>
+        /// <CONDICION>::=<OPERACION>|<OPERACION><CONECTOR><CONDICION>
         ///
 
         private void evaluarCondicion()
         {
-            pedirComponente();
             evaluarOperacion();
 
             if(Categoria.AND.Equals(this.componente.obtenerCategoria()) || Categoria.OR.Equals(this.componente.obtenerCategoria()))
@@ -147,19 +139,18 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <OPERACION> -> <OPERANDO> <OPERADOR> <OPERANDO>
+        /// <OPERACION>::=<OPERANDO><OPERADOR><OPERANDO>
         ///
 
         private void evaluarOperacion()
         {
-            pedirComponente();
             evaluarOperando();
             evaluarOperador();
             evaluarOperando();
         }
 
         ///
-        /// <OPERANDO> -> CAMPO|LITERAL|<NUMERO>
+        /// <OPERANDO>::=CAMPO|LITERAL|<NUMERO>
         ///
 
         private void evaluarOperando()
@@ -174,7 +165,6 @@ namespace Compilador.src.analizadorsintactico
             }
             else if (Categoria.ENTERO.Equals(this.componente.obtenerCategoria()) || Categoria.DECIMAL.Equals(this.componente.obtenerCategoria()))
             {
-                pedirComponente();
                 evaluarNumero();
             }
             else
@@ -194,7 +184,7 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <OPERADOR> -> >|<|=|>=|<=|<>|!=
+        /// <OPERADOR>::=>|<|=|>=|<=|<>|!=
         ///
 
         private void evaluarOperador()
@@ -240,7 +230,7 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <CONECTOR> -> AND|OR
+        /// <CONECTOR>::=AND|OR
         ///
 
         private void evaluarConector()
@@ -270,14 +260,13 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <ORDENADORES> -> <CAMPOS>|<INDICES>|<CAMPOS> <CRITERIO>|<INDICES> <CRITERIO>
+        /// <ORDENADORES>::=<CAMPOS>|<INDICES>|<CAMPOS><CRITERIO>|<INDICES><CRITERIO>
         ///
 
         private void evaluarOrdenadores()
         {
             if (Categoria.CAMPO.Equals(this.componente.obtenerCategoria()))
             {
-                pedirComponente();
                 evaluarCampos();
 
                 if(Categoria.ASC.Equals(this.componente.obtenerCategoria()) || Categoria.DESC.Equals(this.componente.obtenerCategoria()))
@@ -288,7 +277,6 @@ namespace Compilador.src.analizadorsintactico
             }
             else if (Categoria.ENTERO.Equals(this.componente.obtenerCategoria()))
             {
-                pedirComponente();
                 evaluarIndices();
 
                 if (Categoria.ASC.Equals(this.componente.obtenerCategoria()) || Categoria.DESC.Equals(this.componente.obtenerCategoria()))
@@ -314,7 +302,7 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <CAMPOS> -> CAMPO|CAMPO, <CAMPOS>
+        /// <CAMPOS>::=CAMPO|CAMPO,<CAMPOS>
         ///
 
         private void evaluarCampos()
@@ -346,7 +334,7 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <TABLAS> -> TABLA | TABLA, <TABLAS>
+        /// <TABLAS>::=TABLA|TABLA,<TABLAS>
         ///
 
         private void evaluarTablas()
@@ -378,7 +366,7 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <INDICES> -> ENTERO|ENTERO, <INDICES>
+        /// <INDICES>::=ENTERO|ENTERO,<INDICES>
         ///
 
         private void evaluarIndices()
@@ -410,7 +398,7 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <CRITERIO> -> ASC|DESC
+        /// <CRITERIO>::=ASC|DESC
         ///
 
         private void evaluarCriterio()
@@ -440,7 +428,7 @@ namespace Compilador.src.analizadorsintactico
         }
 
         ///
-        /// <NUMERO> -> ENTERO|DECIMAL
+        /// <NUMERO>::=ENTERO|DECIMAL
         ///
 
         private void evaluarNumero()
