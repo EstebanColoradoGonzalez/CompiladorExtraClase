@@ -1826,7 +1826,7 @@ namespace Compilador.Source.AnalizadorLexico
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
 
-            return ComponenteLexico.crearSimbolo(lexema, Categoria.ORDER_BY, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearPalabraReservada(lexema, Categoria.ORDER_BY, numeroLinea, posicionInicial, posicionFinal);
         }
 
         private ComponenteLexico procesarEstadoSetentaYOcho()
