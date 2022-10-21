@@ -13,6 +13,7 @@ namespace Compilador
     {
         public Compilador()
         {
+            GestorErrores.reiniciar();
             InitializeComponent();
         }
 

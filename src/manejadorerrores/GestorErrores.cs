@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Compilador.src.transversal.componentes;
+using System.Collections.Generic;
 
 namespace Compilador.src.manejadorerrores
 {
@@ -21,7 +22,11 @@ namespace Compilador.src.manejadorerrores
 
         public static List<Error> obtenerErrores(TipoError error)
         {
-            if (TipoError.LEXICO.Equals(error))
+            if(!hayErrores(error))
+            {
+                return new List<Error>();
+            }
+            else if (TipoError.LEXICO.Equals(error))
             {
                 return TABLA_ERRORES[error];
             }
