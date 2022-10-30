@@ -2,7 +2,6 @@
 using Compilador.src.manejadorerrores;
 using Compilador.src.transversal.componentes;
 using System;
-using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
 
 namespace Compilador.src.analizadorsintactico
@@ -67,13 +66,13 @@ namespace Compilador.src.analizadorsintactico
                 }
                 else
                 {
+                    string lexema = this.componente.obtenerLexema();
                     int numeroLinea = this.componente.obtenerNumeroLinea();
                     int posicionInicial = this.componente.obtenerPosicionInicial();
                     int posicionFinal = this.componente.obtenerPosicionFinal();
                     string falla = "Componente de la expresión no valido";
-                    string causa = "Se esperaba un FROM, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
-                    string solucion = "Asegurese de que la consulta tenga la consulta tenga la siguiente estructura: SELECT<CAMPOS>FROM<TABLAS>";
-                    string lexema = this.componente.obtenerLexema();
+                    string causa = "Se esperaba un FROM, pero se recibió \"" + lexema + "\"";
+                    string solucion = "Asegurese de que la consulta tenga la consulta tenga la siguiente estructura: SELECT<CAMPOS>FROM<TABLAS>"; 
 
                     GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -82,13 +81,13 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un SELECT, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un SELECT, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que la consulta empiece por un select";
-                string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -132,7 +131,6 @@ namespace Compilador.src.analizadorsintactico
 
             if(Categoria.AND.Equals(this.componente.obtenerCategoria()) || Categoria.OR.Equals(this.componente.obtenerCategoria()))
             {
-                pedirComponente();
                 evaluarConector();
                 evaluarCondicion();
             }
@@ -169,13 +167,13 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un CAMPO un LITERAL o un NUMERO, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un CAMPO un LITERAL o un NUMERO, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que el operando contenga un CAMPO, un LITERAL o un NUMERO";
-                string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -215,13 +213,13 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un > ó < ó >= ó <= ó = ó != ó <>, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un > ó < ó >= ó <= ó = ó != ó <>, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que el operador contenga un > ó < ó >= ó <= ó = ó != ó <>";
-                string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -245,13 +243,13 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un AND o OR, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un AND o OR, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que el conector contenga un AND o OR";
-                string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -271,7 +269,6 @@ namespace Compilador.src.analizadorsintactico
 
                 if(Categoria.ASC.Equals(this.componente.obtenerCategoria()) || Categoria.DESC.Equals(this.componente.obtenerCategoria()))
                 {
-                    pedirComponente();
                     evaluarCriterio();
                 }
             }
@@ -287,13 +284,13 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un CAMPO o un INDICE, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un CAMPO o un INDICE, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que el ordenador contenga un CAMPO o un INDICE";
-                string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -319,13 +316,13 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un CAMPO, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un CAMPO, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que sea uno o muchos campos";
-                string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -351,13 +348,13 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un TABLA, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un TABLA, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que sea una o muchas tablas";
-                string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -383,14 +380,14 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un INDICE, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un INDICE, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que sea uno o muchos INDICES compuestos por numeros enteros";
-                string lexema = this.componente.obtenerLexema();
-
+                
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
                 throw new Exception("Se ha presentado un problema durante el analisis sintactico, dado que se esperaba uno o muchos INDICES, pero se leyó " + lexema);
@@ -416,10 +413,10 @@ namespace Compilador.src.analizadorsintactico
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
-                string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un ASC o DESC, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
-                string solucion = "Asegurese de que el criterio este compuesto por ASC o DESC";
                 string lexema = this.componente.obtenerLexema();
+                string falla = "Componente de la expresión no valido";
+                string causa = "Se esperaba un ASC o DESC, pero se recibió \"" + lexema + "\"";
+                string solucion = "Asegurese de que el criterio este compuesto por ASC o DESC";
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -443,13 +440,13 @@ namespace Compilador.src.analizadorsintactico
             }
             else
             {
+                string lexema = this.componente.obtenerLexema();
                 int numeroLinea = this.componente.obtenerNumeroLinea();
                 int posicionInicial = this.componente.obtenerPosicionInicial();
                 int posicionFinal = this.componente.obtenerPosicionFinal();
                 string falla = "Componente de la expresión no valido";
-                string causa = "Se esperaba un ENTERO o DECIMAL, pero se recibió \"" + this.componente.obtenerLexema() + "\"";
+                string causa = "Se esperaba un ENTERO o DECIMAL, pero se recibió \"" + lexema + "\"";
                 string solucion = "Asegurese de que el criterio este compuesto por ENTERO o DECIMAL";
-                string lexema = this.componente.obtenerLexema();
 
                 GestorErrores.agregar(Error.crearErrorSintactico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 

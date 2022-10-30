@@ -692,7 +692,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("ELECT");
                 estadoActual = 7;
             }
         }
@@ -708,7 +707,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("LECT");
                 estadoActual = 7;
             }
         }
@@ -724,7 +722,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("ECT");
                 estadoActual = 7;
             }
         }
@@ -740,7 +737,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("CT");
                 estadoActual = 7;
             }
         }
@@ -756,7 +752,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("T");
                 estadoActual = 7;
             }
         }
@@ -768,7 +763,7 @@ namespace Compilador.Source.AnalizadorLexico
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
 
-            return ComponenteLexico.crearSimbolo(lexema, Categoria.SELECT, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearPalabraReservada(lexema, Categoria.SELECT, numeroLinea, posicionInicial, posicionFinal);
         }
 
         private ComponenteLexico procesarEstadoSiete()
@@ -780,13 +775,41 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "caracter del SELECT no valido";
-            string causa = "Se esperaba un caracter valido para la palabra reservada SELECT, pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para la palabra reservada SELECT, pero se recibió \"" + lexema + "\"";
             string solucion = "La palabra resevada correcta es SELECT";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.SELECT, numeroLinea, 1, 1);
+            completarSelect();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.SELECT, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarSelect()
+        {
+            if (lexema.Length == 1)
+            {
+                concatenar("ELECT");
+            }
+            else if (lexema.Length == 2)
+            {
+                concatenar("LECT");
+            }
+            else if (lexema.Length == 3)
+            {
+                concatenar("ECT");
+            }
+            else if (lexema.Length == 4)
+            {
+                concatenar("CT");
+            }
+            else if (lexema.Length == 5)
+            {
+                concatenar("T");
+            }
         }
 
         private void procesarEstadoOcho()
@@ -800,7 +823,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("ROM");
                 estadoActual = 12;
             }
         }
@@ -816,7 +838,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("OM");
                 estadoActual = 12;
             }
         }
@@ -832,7 +853,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("M");
                 estadoActual = 12;
             }
         }
@@ -844,7 +864,7 @@ namespace Compilador.Source.AnalizadorLexico
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
 
-            return ComponenteLexico.crearSimbolo(lexema, Categoria.FROM, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearPalabraReservada(lexema, Categoria.FROM, numeroLinea, posicionInicial, posicionFinal);
         }
 
         private ComponenteLexico procesarEstadoDoce()
@@ -856,13 +876,33 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "caracter del FROM no valido";
-            string causa = "Se esperaba un caracter valido para la palabra reservada FROM, pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para la palabra reservada FROM, pero se recibió \"" + lexema + "\"";
             string solucion = "La palabra resevada correcta es FROM";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.FROM, numeroLinea, 1, 1);
+            completarFROM();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.FROM, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarFROM()
+        {
+            if (lexema.Length == 1)
+            {
+                concatenar("ROM");
+            }
+            else if (lexema.Length == 2)
+            {
+                concatenar("OM");
+            }
+            else if (lexema.Length == 3)
+            {
+                concatenar("M");
+            }
         }
 
         private void procesarEstadoTrece()
@@ -876,7 +916,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("AM_NOMBRE");
                 estadoActual = 19;
             }
         }
@@ -892,7 +931,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("M_NOMBRE");
                 estadoActual = 19;
             }
         }
@@ -907,7 +945,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("_NOMBRE");
                 estadoActual = 19;
             }
         }
@@ -928,7 +965,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("NOMBRE");
                 estadoActual = 19;
             }
         }
@@ -972,13 +1008,37 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "caracter del CAMPO no valido";
-            string causa = "Se esperaba un caracter valido para el CAMPO, pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para el CAMPO, pero se recibió \"" + lexema + "\"";
             string solucion = "La palabra resevada para el campo CAM_";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionFinal, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.CAMPO, numeroLinea, 1, 1);
+            completarCampo();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.CAMPO, numeroLinea, posicionFinal, posicionFinal);
+        }
+
+        private void completarCampo()
+        {
+            if (lexema.Length == 1)
+            {
+                concatenar("AM_NOMBRE");
+            }
+            else if (lexema.Length == 2)
+            {
+                concatenar("M_NOMBRE");
+            }
+            else if (lexema.Length == 3)
+            {
+                concatenar("_NOMBRE");
+            }
+            else if (lexema.Length == 4)
+            {
+                concatenar("NOMBRE");
+            }
         }
 
         private void procesarEstadoVeinte()
@@ -992,7 +1052,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("AB_NOMBRE");
                 estadoActual = 26;
             }
         }
@@ -1008,7 +1067,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("B_NOMBRE");
                 estadoActual = 26;
             }
         }
@@ -1024,7 +1082,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("_NOMBRE");
                 estadoActual = 26;
             }
         }
@@ -1045,7 +1102,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("NOMBRE");
                 estadoActual = 26;
             }
         }
@@ -1089,13 +1145,37 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "caracter de la TABLA no valido";
-            string causa = "Se esperaba un caracter valido para la TABLA, pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para la TABLA, pero se recibió \"" + lexema + "\"";
             string solucion = "La palabra resevada para la TABLA TAB_";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.TABLA, numeroLinea, 1, 1);
+            completarTabla();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.TABLA, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarTabla()
+        {
+            if (lexema.Length == 1)
+            {
+                concatenar("AB_NOMBRE");
+            }
+            else if (lexema.Length == 2)
+            {
+                concatenar("B_NOMBRE");
+            }
+            else if (lexema.Length == 3)
+            {
+                concatenar("_NOMBRE");
+            }
+            else if (lexema.Length == 4)
+            {
+                concatenar("NOMBRE");
+            }
         }
 
         private ComponenteLexico procesarEstadoVeintiSiete()
@@ -1206,7 +1286,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("=");
                 estadoActual = 37;
             }
         }
@@ -1230,13 +1309,22 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Simbolo del diferente que no valido";
-            string causa = "Se esperaba un caracter valido para el operador diferente que, pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para el operador diferente que, pero se recibió \"" + lexema + "\"";
             string solucion = "El operador diferente que puede ser != o <>";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.DIFERENTE_QUE, numeroLinea, 1, 1);
+            completarDiferenteQue();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.DIFERENTE_QUE, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarDiferenteQue()
+        {
+            concatenar("=");
         }
 
         private void procesarEstadoTreintaYOcho()
@@ -1270,7 +1358,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("D");
                 estadoActual = 41;
             }
         }
@@ -1282,7 +1369,7 @@ namespace Compilador.Source.AnalizadorLexico
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
 
-            return ComponenteLexico.crearSimbolo(lexema, Categoria.AND, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearPalabraReservada(lexema, Categoria.AND, numeroLinea, posicionInicial, posicionFinal);
         }
 
         private ComponenteLexico procesarEstadoCuarentaYUno()
@@ -1294,13 +1381,22 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Caracter del AND no valido";
-            string causa = "Se esperaba un caracter valido para el operador AND, pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para el operador AND, pero se recibió \"" + lexema + "\"";
             string solucion = "El operador AND puede ser AND o and";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.AND, numeroLinea, 1, 1);
+            completarAND();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.AND, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarAND()
+        {
+            concatenar("D");
         }
 
         private void procesarEstadoCuarentaYDos()
@@ -1319,7 +1415,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("C");
                 estadoActual = 45;
             }
         }
@@ -1343,13 +1438,22 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Caracter del ASC no valido";
-            string causa = "Se esperaba un caracter valido para el operador ASC, pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para el operador ASC, pero se recibió \"" + lexema + "\"";
             string solucion = "El operador ASC puede ser ASC o asc";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.ASC, numeroLinea, 1, 1);
+            completarASC();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.ASC, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarASC()
+        {
+            concatenar("C");
         }
 
         private void procesarEstadoCuarentaYSeis()
@@ -1363,7 +1467,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("ESC");
                 estadoActual = 50;
             }
         }
@@ -1379,7 +1482,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("SC");
                 estadoActual = 50;
             }
         }
@@ -1395,7 +1497,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("C");
                 estadoActual = 50;
             }
         }
@@ -1407,7 +1508,7 @@ namespace Compilador.Source.AnalizadorLexico
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
 
-            return ComponenteLexico.crearSimbolo(lexema, Categoria.DESC, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearPalabraReservada(lexema, Categoria.DESC, numeroLinea, posicionInicial, posicionFinal);
         }
 
         private ComponenteLexico procesarEstadoCincuenta()
@@ -1419,13 +1520,33 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Caracter del DESC no valido";
-            string causa = "Se esperaba un caracter valido para el operador DESC pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para el operador DESC pero se recibió \"" + lexema + "\"";
             string solucion = "El operador DESC puede ser DESC o desc";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.DESC, numeroLinea, 1, 1);
+            completarDESC();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.DESC, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarDESC()
+        {
+            if (lexema.Length == 1)
+            {
+                concatenar("ESC");
+            }
+            else if (lexema.Length == 2)
+            {
+                concatenar("SC");
+            }
+            else if(lexema.Length == 3)
+            {
+                concatenar("C");
+            }
         }
 
         private ComponenteLexico procesarEstadoCincuentaYUno()
@@ -1440,12 +1561,11 @@ namespace Compilador.Source.AnalizadorLexico
 
         private void procesarEstadoCincuentaYDos()
         {
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Simbolo no reconocido por el lenguaje";
             string causa = "Recibí \"" + caracterActual + "\"";
             string solucion = "Asegurese de que el programa de entrada solo contenga simbolos validos";
-
-            int posicionInicial = puntero - 1;
-            int posicionFinal = puntero - 1;
 
             GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
@@ -1518,13 +1638,22 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Numero o decimal no valido";
-            string causa = "Luego del separador decimal, se debe recibir un digito y se recibio \"" + caracterActual + "\"";
+            string causa = "Luego del separador decimal, se debe recibir un digito y se recibio \"" + lexema + "\"";
             string solucion = "luego del separador decimal se debe recibir un digito";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.DECIMAL, numeroLinea, 1, 1);
+            completarDecimal();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.DECIMAL, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarDecimal()
+        {
+            concatenar("0");
         }
 
         private void procesarEstadoCincuentaYOcho()
@@ -1604,7 +1733,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("HERE");
                 estadoActual = 67;
             }
         }
@@ -1620,7 +1748,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("ERE");
                 estadoActual = 67;
             }
         }
@@ -1636,7 +1763,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("RE");
                 estadoActual = 67;
             }
         }
@@ -1652,7 +1778,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("E");
                 estadoActual = 67;
             }
         }
@@ -1676,13 +1801,37 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Caracter del WHERE no valido";
-            string causa = "Se esperaba un caracter valido la palabra reservada WHERE pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido la palabra reservada WHERE pero se recibió \"" + lexema + "\"";
             string solucion = "El operador WHERE puede ser WHERE o where";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.WHERE, numeroLinea, 1, 1);
+            completarWhere();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.WHERE, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarWhere()
+        {
+            if(lexema.Length == 1)
+            {
+                concatenar("HERE");
+            }
+            else if(lexema.Length == 2)
+            {
+                concatenar("ERE");
+            }
+            else if (lexema.Length == 3)
+            {
+                concatenar("RE");
+            }
+            else if (lexema.Length == 4)
+            {
+                concatenar("E");
+            }
         }
 
         private void procesarEstadoSesentaYOcho()
@@ -1731,7 +1880,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("ER BY");
                 estadoActual = 78;
             }
         }
@@ -1757,7 +1905,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("R BY");
                 estadoActual = 78;
             }
         }
@@ -1778,7 +1925,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar(" BY");
                 estadoActual = 78;
             }
         }
@@ -1798,7 +1944,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("BY");
                 estadoActual = 78;
             }
         }
@@ -1814,7 +1959,6 @@ namespace Compilador.Source.AnalizadorLexico
             }
             else
             {
-                concatenar("Y");
                 estadoActual = 78;
             }
         }
@@ -1838,13 +1982,45 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Caracter del ORDER BY no valido";
-            string causa = "Se esperaba un caracter valido para la palabra reservada ORDER BY pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para la palabra reservada ORDER BY pero se recibió \"" + lexema + "\"";
             string solucion = "La palabra reservada ORDER BY puede ser ORDER BY o order by";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.ORDER_BY, numeroLinea, 1, 1);
+            completarOrderBy();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.ORDER_BY, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarOrderBy()
+        {
+            if (lexema.Length == 2)
+            {
+                concatenar("DER BY");
+            }
+            else if (lexema.Length == 3)
+            {
+                concatenar("ER BY");
+            }
+            else if (lexema.Length == 4)
+            {
+                concatenar("R BY");
+            }
+            else if (lexema.Length == 5)
+            {
+                concatenar(" BY");
+            }
+            else if (lexema.Length == 6)
+            {
+                concatenar("BY");
+            }
+            else if (lexema.Length == 7)
+            {
+                concatenar("Y");
+            }
         }
 
         private ComponenteLexico procesarEstadoSetentaYNueve()
@@ -1853,8 +2029,6 @@ namespace Compilador.Source.AnalizadorLexico
 
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
-
-
 
             return ComponenteLexico.crearSimbolo(lexema, Categoria.COMA, numeroLinea, posicionInicial, posicionFinal);
         }
@@ -1868,13 +2042,22 @@ namespace Compilador.Source.AnalizadorLexico
                 devolverPuntero();
             }
 
+            int posicionInicial = puntero - lexema.Length;
+            int posicionFinal = puntero - 1;
             string falla = "Caracter del LITERAL no valido";
-            string causa = "Se esperaba un caracter valido para el LITERAL pero se recibió \"" + caracterActual + "\"";
+            string causa = "Se esperaba un caracter valido para el LITERAL pero se recibió \"" + lexema + "\"";
             string solucion = "El literal debe terminar en comilla simple";
 
-            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, 1, 1, falla, causa, solucion));
+            GestorErrores.agregar(Error.crearErrorLexico(numeroLinea, posicionInicial, posicionFinal, falla, causa, solucion));
 
-            return ComponenteLexico.crearDummy(lexema, Categoria.LITERAL, numeroLinea, 1, 1);
+            completarLiteral();
+
+            return ComponenteLexico.crearDummy(lexema, Categoria.LITERAL, numeroLinea, posicionInicial, posicionFinal);
+        }
+
+        private void completarLiteral()
+        {
+            concatenar("'");
         }
     }
 }
