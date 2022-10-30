@@ -20,16 +20,22 @@ namespace Compilador
         private void limpiarEntradaConsolaButton_Click(object sender, EventArgs e)
         {
             consolaTextBox.Clear();
+            GestorErrores.reiniciar();
+            TablaMaestra.reiniciar();
         }
 
         private void limpiarSalidaConsolaButton_Click(object sender, EventArgs e)
         {
             salidaConsolaTextBox.Clear();
+            GestorErrores.reiniciar();
+            TablaMaestra.reiniciar();
         }
 
         private void limpiarSalidaArchivoButton_Click(object sender, EventArgs e)
         {
             salidaArchivoTextBox.Clear();
+            GestorErrores.reiniciar();
+            TablaMaestra.reiniciar();
         }
 
         private void compilarConsolaButton_Click(object sender, EventArgs e)
@@ -54,18 +60,6 @@ namespace Compilador
                 AnalizadorSintactico analizadorSintactico = new AnalizadorSintactico();
 
                 analizadorSintactico.analizar();
-
-                /*AnalizadorLexico analizadorLexico = AnalizadorLexico.crear();
-
-                ComponenteLexico componente = null;
-
-                do
-                {
-                    componente = analizadorLexico.devolverComponente();
-
-                    MessageBox.Show(componente.ToString());
-                }
-                while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));*/
             }
             catch (Exception exception)
             {
@@ -95,18 +89,6 @@ namespace Compilador
                 AnalizadorSintactico analizadorSintactico = new AnalizadorSintactico();
 
                 analizadorSintactico.analizar();
-
-                /*AnalizadorLexico analizadorLexico = AnalizadorLexico.crear();
-
-                ComponenteLexico componente = null;
-
-                do
-                {
-                    componente = analizadorLexico.devolverComponente();
-
-                    MessageBox.Show(componente.ToString());
-                }
-                while (!componente.obtenerCategoria().Equals(Categoria.FIN_ARCHIVO));*/
             }
             catch (Exception exception)
             {
