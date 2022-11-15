@@ -1719,7 +1719,7 @@ namespace Compilador.Source.AnalizadorLexico
             int posicionInicial = puntero - lexema.Length;
             int posicionFinal = puntero - 1;
 
-            return ComponenteLexico.crearSimbolo(lexema, Categoria.LITERAL, numeroLinea, posicionInicial, posicionFinal);
+            return ComponenteLexico.crearLiteral(lexema, Categoria.LITERAL, numeroLinea, posicionInicial, posicionFinal);
         }
 
         private void procesarEstadoSesentaYDos()
@@ -1935,6 +1935,11 @@ namespace Compilador.Source.AnalizadorLexico
 
             if (esEspacio() || esTabulacion())
             {
+                estadoActual = 75;
+            }
+            else if(esFinLinea())
+            {
+                cargarNuevaLinea();
                 estadoActual = 75;
             }
             else if (esLetraB())
