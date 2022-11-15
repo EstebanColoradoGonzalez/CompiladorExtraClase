@@ -20,22 +20,39 @@ namespace Compilador
         private void limpiarEntradaConsolaButton_Click(object sender, EventArgs e)
         {
             consolaTextBox.Clear();
-            GestorErrores.reiniciar();
-            TablaMaestra.reiniciar();
+            limpiarTablas();
+            reiniciarTablas();
         }
 
         private void limpiarSalidaConsolaButton_Click(object sender, EventArgs e)
         {
             salidaConsolaTextBox.Clear();
-            GestorErrores.reiniciar();
-            TablaMaestra.reiniciar();
+            limpiarTablas();
+            reiniciarTablas();
         }
 
         private void limpiarSalidaArchivoButton_Click(object sender, EventArgs e)
         {
             salidaArchivoTextBox.Clear();
+            limpiarTablas();
+            reiniciarTablas();
+        }
+
+        public void reiniciarTablas()
+        {
             GestorErrores.reiniciar();
             TablaMaestra.reiniciar();
+        }
+
+        public void limpiarTablas()
+        {
+            simbolosDataGridView.Rows.Clear();
+            literalesDataGridView.Rows.Clear();
+            dummiesDataGridView.Rows.Clear();
+            palabrasReservadasDataGridView.Rows.Clear();
+            erroresLexicosDataGridView.Rows.Clear();
+            erroresSemanticosDataGridView.Rows.Clear();
+            erroresSintacticosDataGridView.Rows.Clear();
         }
 
         private void compilarConsolaButton_Click(object sender, EventArgs e)

@@ -32,6 +32,11 @@ namespace Compilador.src.transversal.componentes
             return new ComponenteLexico(lexema, categoria, Tipo.DUMMY, numeroLinea, posicionInicial, posicionFinal);
         }
 
+        public static ComponenteLexico crearLiteral(string lexema, Categoria categoria, int numeroLinea, int posicionInicial, int posicionFinal)
+        {
+            return new ComponenteLexico(lexema, categoria, Tipo.LITERAL, numeroLinea, posicionInicial, posicionFinal);
+        }
+
         public static ComponenteLexico crearPalabraReservada(string lexema, Categoria categoria, int numeroLinea, int posicionInicial, int posicionFinal)
         {
             return new ComponenteLexico(lexema, categoria, Tipo.PALABRA_RESERVADA, numeroLinea, posicionInicial, posicionFinal);
